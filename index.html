@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex">
+<title>Mariage Marva &amp; Jules</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Jost:wght@400;500;600&family=Libre+Caslon+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Une feuille de papier à lettres : une seule colonne sur papier crème, la branche de citronnier
+     du faire-part suspendue au coin haut gauche, des sections séparées par un filet et un citron. */
+  --paper:#FAF5DC;   /* papier du faire-part */
+  --card:#FFFCEC;    /* surfaces de saisie */
+  --olive:#668136;   /* vert des prénoms */
+  --ink:#3E4F22;     /* texte courant, vert feuille foncé */
+  --leaf:#56692F;    /* texte secondaire */
+  --lemon:#EFC00A;   /* jaune citron, l'accent */
+  --gold:#AD8610;    /* dates en grand */
+  --ochre:#8A680C;   /* petits repères */
+  --alert:#A8452A;   /* erreurs de saisie */
+  --rule:rgba(102,129,54,.3);
+  --backdrop:#EAE3BF;
+  --display:"Libre Caslon Text","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --script:"Cormorant Garamond","Hoefler Text",Garamond,Georgia,serif;
+  --text:"Jost","Avenir Next","Century Gothic","Segoe UI",sans-serif;
+  --gutter:1.375rem;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none !important}
+html{background:var(--paper);-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{position:relative;margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.6 var(--text);overflow-x:clip}
+img{max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3,p,ul,ol,dl,dd,figure,fieldset{margin:0;padding:0}
+ul,ol{list-style:none}
+fieldset{border:0;min-width:0}
+:focus-visible{outline:2.5px solid var(--olive);outline-offset:2px;border-radius:4px}
+
+.sheet{position:relative;max-width:38rem;margin:0 auto;overflow-x:clip}
+
+/* ── Accueil ─────────────────────────────────────────────── */
+.hero{position:relative;overflow:hidden;text-align:center;padding:26% var(--gutter) 2.25rem}
+.branch{position:absolute;top:-8px;left:-8px;width:74%;max-width:none;pointer-events:none;user-select:none;
+  transform-origin:0 0;animation:sway 8s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-.7deg)}to{transform:rotate(.9deg)}}
+.for{position:relative;font:italic 500 1.2rem/1.2 var(--script);color:var(--ochre);margin-bottom:3%}
+.names{position:relative;font:400 min(17.4vw,6.6rem)/.8 var(--display);letter-spacing:-.012em;color:var(--olive);margin-top:8%}
+.for:not([hidden]) + .names{margin-top:0}
+.names > span{display:block}
+.amp{color:var(--lemon)}
+.tagline{position:relative;font:italic 500 clamp(1.3rem,5.6vw,1.75rem)/1.22 var(--script);color:var(--leaf);
+  max-width:30ch;margin:9% auto 0;text-wrap:balance}
+.peaks{display:block;width:44%;margin:7% auto 6%}
+.date{font:600 clamp(1.75rem,7.6vw,2.5rem)/1.1 var(--script);color:var(--gold);font-variant-numeric:lining-nums}
+.dow{display:block;font:500 .75rem/1 var(--text);letter-spacing:.22em;text-transform:uppercase;color:var(--ochre);margin-bottom:.55rem}
+.place{font:italic 500 clamp(1.3rem,5.4vw,1.6rem)/1.3 var(--script);color:var(--leaf);margin-top:.3rem}
+.count{font:500 .75rem/1 var(--text);letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);margin-top:1.4rem}
+.hero .btn{margin-top:1.1rem}
+
+/* ── Boutons ─────────────────────────────────────────────── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3rem;padding:.6rem 1.5rem;
+  border:1.5px solid transparent;border-radius:999px;font:500 1rem/1.15 var(--text);letter-spacing:.01em;
+  text-decoration:none;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s,background-color .15s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--lemon);color:#2F3A1C;box-shadow:0 2px 0 rgba(138,104,12,.45)}
+.btn-primary:hover{background:#F4CB2B}
+.btn-ghost{background:transparent;border-color:var(--olive);color:var(--ink)}
+.btn-ghost:hover{background:rgba(102,129,54,.1)}
+.btn-dashed{background:transparent;border:1.5px dashed var(--olive);color:var(--ink);width:100%}
+.btn-block{width:100%}
+.link-btn{background:none;border:0;padding:.6rem .2rem;min-height:2.75rem;font:500 .9375rem/1 var(--text);color:var(--leaf);
+  text-decoration:underline;text-underline-offset:.2em;cursor:pointer}
+
+/* ── Navigation ──────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:.75rem;padding:.4rem .6rem .4rem var(--gutter);
+  background:rgba(250,245,220,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.nav-links{position:relative;display:flex;gap:1.15rem;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;
+  -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 1.75rem),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 1.75rem),transparent);padding-right:1.5rem}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{flex:none;padding:.95rem 0 .85rem;font:500 .75rem/1 var(--text);letter-spacing:.13em;text-transform:uppercase;
+  color:var(--leaf);text-decoration:none;border-bottom:2px solid transparent}
+.nav-links a[aria-current="true"]{color:var(--ink);border-bottom-color:var(--lemon)}
+.nav .btn{flex:none;min-height:2.5rem;padding:.4rem 1.05rem;font-size:.875rem}
+
+/* ── Sections ────────────────────────────────────────────── */
+.block{padding:3rem var(--gutter) 0;scroll-margin-top:3.5rem}
+.block:focus{outline:none}
+h2{font:400 1.95rem/1.15 var(--display);color:var(--olive);letter-spacing:-.005em;text-wrap:balance}
+h3{font:400 1.2rem/1.25 var(--display);color:var(--ink);text-wrap:balance}
+.lead{font:italic 500 1.35rem/1.32 var(--script);color:var(--leaf);margin-top:.5rem;max-width:26ch;text-wrap:balance}
+.rule{display:flex;align-items:center;gap:.9rem;margin:3rem var(--gutter) 0}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:var(--rule)}
+.rule svg{width:1.5rem;height:1rem;flex:none}
+.tbc{display:inline-block;vertical-align:middle;margin-left:.35rem;padding:.26rem .5rem;border:1px dashed currentColor;border-radius:999px;
+  font:500 .625rem/1 var(--text);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;color:var(--ochre)}
+.fine{font-size:.875rem;color:var(--leaf);margin-top:1rem}
+
+.intro{padding:2.5rem var(--gutter) 0}
+.intro p{font:500 1.35rem/1.42 var(--script);color:var(--ink);max-width:30ch}
+.intro .sign{font:italic 400 1.15rem/1 var(--display);color:var(--olive);margin-top:1rem}
+
+/* Programme */
+.days{margin-top:1.5rem}
+.day{display:grid;grid-template-columns:4.5rem minmax(0,1fr);column-gap:1rem;padding:1.3rem 0;border-top:1px solid var(--rule)}
+.day:last-child{border-bottom:1px solid var(--rule)}
+.day-when{text-align:center}
+.day-dow{display:block;font:500 .6875rem/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--ochre);margin-bottom:.45rem}
+.day-num{display:grid;place-items:center;width:4rem;height:3.35rem;margin:0 auto;font:600 2.6rem/1 var(--script);color:var(--gold);font-variant-numeric:lining-nums}
+.day-main .day-num{background:var(--lemon);color:#2F3A1C;border-radius:58% 42% 55% 45% / 52% 60% 40% 48%;transform:rotate(-8deg)}
+.day-main .day-num span{display:block;transform:rotate(8deg)}
+.day-month{display:block;font:italic 500 1rem/1 var(--script);color:var(--leaf);margin-top:.4rem}
+.day p{margin-top:.35rem}
+.day .where{font:italic 500 1.15rem/1.2 var(--script);color:var(--leaf)}
+.moments{margin-top:.8rem;display:grid;gap:.35rem}
+.moments li{display:flex;align-items:baseline;gap:.65rem}
+.moments li::before{content:"";flex:none;width:.42rem;height:.42rem;border-radius:50%;background:var(--lemon);transform:translateY(-.12rem)}
+
+/* Lieu */
+.venue{margin-top:1.5rem;padding:1.4rem 1.25rem 1.5rem;border:1px solid var(--rule);border-radius:1.1rem;background:var(--card);display:grid;gap:.8rem;justify-items:start}
+.venue h3{font-size:1.5rem;color:var(--olive)}
+.venue address{font-style:normal;font-weight:500}
+
+/* Venir */
+.map{margin:1.25rem -.25rem 0}
+.map svg{display:block;width:100%;height:auto}
+.map .isle{fill:#EFE9BE;stroke:var(--olive);stroke-width:1.4;stroke-linejoin:round}
+.map .ridge{fill:none;stroke:var(--olive);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
+.map .way{fill:none;stroke:var(--ochre);stroke-width:1.6;stroke-dasharray:1 5;stroke-linecap:round}
+.map .port{fill:var(--paper);stroke:var(--ink);stroke-width:1.6}
+.map .fruit{fill:var(--lemon);stroke:var(--ink);stroke-width:1.2}
+.map text{font:500 11px/1 var(--text);fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
+.map .sea{font:italic 500 12.5px/1 var(--script);fill:var(--leaf);stroke:none;letter-spacing:.04em}
+.map .here{font:400 12.5px/1 var(--display)}
+.map figcaption{font:600 1.3rem/1.2 var(--script);color:var(--gold);text-align:center;margin:.25rem auto 0;max-width:24ch;text-wrap:balance;font-variant-numeric:lining-nums}
+.rows{margin-top:1.5rem}
+.row{display:grid;grid-template-columns:6.75rem minmax(0,1fr);column-gap:1rem;padding:1rem 0;border-top:1px solid var(--rule)}
+.row:last-child{border-bottom:1px solid var(--rule)}
+.row dt{font:italic 500 1.2rem/1.25 var(--script);color:var(--leaf)}
+
+/* Dormir */
+.stays{margin-top:1.5rem}
+.stays li{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:1rem;align-items:center;padding:.95rem 0;border-top:1px solid var(--rule)}
+.stays li:last-child{border-bottom:1px solid var(--rule)}
+.stays p{color:var(--leaf);font-size:.9375rem;line-height:1.4;margin-top:.15rem}
+.mins{font:600 1.3rem/1 var(--script);color:var(--gold);white-space:nowrap;font-variant-numeric:lining-nums}
+
+/* Pratique */
+.facts{margin-top:1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));column-gap:1.75rem}
+.fact{padding:1rem 0;border-top:1px solid var(--rule)}
+.fact p{margin-top:.3rem}
+.around{margin-top:1.75rem;padding:1.3rem 1.25rem;border-radius:1.1rem;background:rgba(239,192,10,.16)}
+.around ul{margin-top:.7rem;display:grid;gap:.45rem}
+.around li{display:flex;align-items:baseline;gap:.65rem}
+.around li::before{content:"";flex:none;width:.42rem;height:.42rem;border-radius:50%;background:var(--olive);transform:translateY(-.12rem)}
+
+/* ── Réponse ─────────────────────────────────────────────── */
+.group{margin-top:2rem;display:grid;gap:1rem}
+.group > legend{font:400 1.3rem/1.2 var(--display);color:var(--ink);padding:0;margin-bottom:.9rem;float:left;width:100%}
+.group > legend + *{clear:both}
+.hint{font-size:.9375rem;color:var(--leaf);margin-top:-.6rem}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:.9rem}
+.field{display:grid;gap:.4rem;align-content:start}
+.field > label,.cap{font:500 .75rem/1.25 var(--text);letter-spacing:.1em;text-transform:uppercase;color:var(--leaf)}
+input[type="text"],input[type="email"],input[type="tel"],input[type="number"],select,textarea{
+  width:100%;min-height:3rem;padding:.65rem .85rem;border:1.5px solid rgba(102,129,54,.5);border-radius:.7rem;background:var(--card);
+  color:var(--ink);font:400 1rem/1.3 var(--text);-webkit-appearance:none;appearance:none}
+textarea{resize:vertical;min-height:5.5rem;line-height:1.5}
+::placeholder{color:#7B835B;opacity:1}
+select{padding-right:2.5rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%233E4F22' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right .9rem center;background-size:.75rem}
+input:focus-visible,select:focus-visible,textarea:focus-visible{outline-offset:1px;border-radius:.7rem;border-color:var(--olive)}
+input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)}
+.error{font-size:.875rem;line-height:1.35;color:var(--alert)}
+.seg{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg label{display:flex;align-items:center;justify-content:center;min-height:3rem;padding:.4rem .5rem;border:1.5px solid rgba(102,129,54,.5);
+  border-radius:.7rem;background:var(--card);font:500 .9375rem/1.2 var(--text);color:var(--ink);text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.seg input:checked + label{background:#557029;border-color:#557029;color:#FFFCEC}
+.seg input:focus-visible + label{outline:2.5px solid var(--olive);outline-offset:2px}
+.seg-quiet label{min-height:2.5rem;font-size:.875rem;border-color:rgba(102,129,54,.35);background:transparent;color:var(--leaf)}
+.seg-quiet input:checked + label{background:rgba(102,129,54,.16);border-color:var(--olive);color:var(--ink)}
+.person{display:grid;gap:.95rem;padding:1.1rem 1rem 1.2rem;border:1px solid var(--rule);border-radius:1rem;background:rgba(255,252,236,.55)}
+.person + .person{margin-top:.9rem}
+.person-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:2.75rem;margin-bottom:-.4rem}
+.person-head h3{font:italic 400 1.15rem/1 var(--display);color:var(--olive)}
+.meal{display:grid;gap:.95rem}
+.checks{display:grid;gap:.5rem}
+.check{display:flex;align-items:center;gap:.8rem;min-height:3rem;padding:.55rem .85rem;border:1.5px solid rgba(102,129,54,.5);border-radius:.7rem;background:var(--card);cursor:pointer}
+.check input{flex:none;width:1.25rem;height:1.25rem;margin:0;accent-color:#557029}
+.check span{line-height:1.35}
+.form-error{margin-top:1.5rem;padding:.8rem 1rem;border-radius:.7rem;background:rgba(168,69,42,.1);color:var(--alert);font-weight:500}
+#rsvp-form > .btn{margin-top:1.5rem}
+#rsvp-form > .fine{text-align:center;margin-top:.8rem}
+.recap{margin-top:1.75rem;padding:1.4rem 1.25rem 1.25rem;border:1px solid var(--rule);border-radius:1.1rem;background:var(--card)}
+.recap:focus{outline:none}
+.recap h3{font-size:1.5rem;color:var(--olive)}
+.recap > p{margin-top:.5rem}
+.recap-text{white-space:pre-wrap;overflow-wrap:anywhere;margin-top:1.1rem !important;padding:1rem;border-left:3px solid var(--lemon);background:var(--paper);border-radius:0 .7rem .7rem 0;font-size:.9375rem;line-height:1.55}
+.actions{display:grid;gap:.6rem;justify-items:center;margin-top:1.25rem}
+.recap .fine{text-align:center}
+.status{min-height:1.4em;font-size:.9375rem;font-weight:500;color:var(--ink);text-align:center;margin-top:.6rem !important}
+#copy-fallback{margin-top:.75rem;font-size:.9375rem}
+
+/* ── Pied de page ────────────────────────────────────────── */
+.foot{position:relative;overflow:hidden;margin-top:3.5rem;padding:2.5rem var(--gutter) 47%;border-top:1px solid var(--rule)}
+.branch-bottom{top:auto;left:auto;right:0;bottom:0;width:62%;transform:rotate(180deg);transform-origin:50% 50%;animation:none}
+.foot-line{font:italic 500 1.6rem/1.2 var(--script);color:var(--leaf)}
+.foot-names{font:400 2.2rem/1 var(--display);color:var(--olive);margin-top:.5rem;letter-spacing:-.01em}
+.foot-date{font:500 .75rem/1 var(--text);letter-spacing:.22em;text-transform:uppercase;color:var(--ochre);margin-top:.9rem}
+
+@media (max-width:21rem){
+  :root{--gutter:1rem}
+  .row{grid-template-columns:1fr;row-gap:.2rem}
+  .day{grid-template-columns:3.75rem minmax(0,1fr)}
+}
+/* ── Tablette ────────────────────────────────────────────── */
+@media (min-width:48rem){
+  :root{--gutter:2.5rem}
+  .sheet{max-width:46rem}
+  .stays{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2.5rem}
+  .stays li:nth-last-child(-n+2){border-bottom:1px solid var(--rule)}
+  .around ul{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem}
+}
+
+/* ── Grand écran ─────────────────────────────────────────── */
+@media (min-width:64rem){
+  :root{--gutter:4.5rem}
+  .sheet{max-width:72rem}
+
+  .hero{padding:11rem var(--gutter) 4.5rem}
+  .branch{width:36rem}
+  .for{font-size:1.5rem;margin-bottom:1.5rem}
+  .names{font-size:8.5rem;margin-top:0}
+  .tagline{font-size:2rem;margin-top:2.75rem}
+  .peaks{width:16rem;margin:2.5rem auto 2rem}
+  .date{font-size:2.75rem}
+  .place{font-size:1.75rem}
+
+  .nav{padding-inline:var(--gutter) 1rem}
+  .nav-links{gap:2.25rem;-webkit-mask-image:none;mask-image:none;padding-right:0}
+
+  .intro{padding-top:3.5rem}
+  .intro p{font-size:1.65rem;max-width:36ch}
+  .block{padding-top:3.5rem}
+  .rule{margin-top:3.5rem}
+  h2{font-size:2.6rem}
+  .lead{font-size:1.55rem;max-width:40ch}
+
+  /* Programme : trois jours côte à côte */
+  .days{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:2.5rem;margin-top:2rem}
+  .day{grid-template-columns:1fr;row-gap:1rem;align-content:start;padding:1.5rem 0;border-bottom:1px solid var(--rule)}
+  .day-when{display:flex;align-items:center;gap:.85rem;text-align:left}
+  .day-dow,.day-month{margin:0}
+  .day-num{margin:0}
+
+  /* Lieu : texte à gauche, bouton à droite */
+  .venue{grid-template-columns:minmax(0,1fr) auto;column-gap:2.5rem;padding:2rem 2.25rem;margin-top:2rem}
+  .venue > *{grid-column:1}
+  .venue p{max-width:52ch}
+  .venue .btn{grid-column:2;grid-row:1 / span 3;align-self:center}
+
+  /* Venir : carte et moyens de transport côte à côte */
+  #venir{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);column-gap:3.5rem;align-items:start}
+  #venir > h2,#venir > .lead{grid-column:1 / -1}
+  #venir .map{margin-top:1.5rem}
+  #venir .rows{margin-top:2rem}
+
+  .stays{column-gap:3.5rem;margin-top:2rem}
+  .facts{column-gap:2.5rem;margin-top:2rem}
+  .around{padding:1.75rem 2rem;margin-top:2.25rem}
+  .around ul{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+  /* Réponse : colonne centrée confortable pour remplir le formulaire */
+  #reponse > *{max-width:46rem;margin-inline:auto}
+
+  .foot{padding:4rem var(--gutter) 13rem}
+  .branch-bottom{width:28rem}
+  .foot-line{font-size:1.9rem}
+  .foot-names{font-size:2.8rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .branch{animation:none}
+  .btn{transition:none}
+}
+</style>
+</head>
+<body>
+<img class="branch branch-top" src="citrons.webp" width="824" height="772" alt="" decoding="async">
+<img class="branch branch-bottom" src="citrons.webp" width="824" height="772" alt="" loading="lazy" decoding="async">
+<div class="sheet">
+
+  <header class="hero" id="accueil">
+    <p class="for" id="for" hidden>Pour <span id="for-names"></span></p>
+    <h1 class="names"><span>Marva</span><span><span class="amp">&amp;</span>Jules</span></h1>
+    <p class="tagline">L’amour nous rassemble, notre mariage nous réunit à Majorque.</p>
+    <img class="peaks" src="montagnes.webp" width="498" height="129" alt="">
+    <p class="date"><span class="dow">Samedi</span>25 septembre 2027</p>
+    <p class="place">Pollença, Majorque</p>
+    <p class="count" id="count" hidden></p>
+    <a class="btn btn-primary" href="#reponse">Répondre à l’invitation</a>
+  </header>
+
+  <nav class="nav" aria-label="Rubriques">
+    <div class="nav-links">
+      <a href="#programme">Programme</a>
+      <a href="#lieu">Lieu</a>
+      <a href="#venir">Venir</a>
+      <a href="#dormir">Dormir</a>
+      <a href="#pratique">Pratique</a>
+    </div>
+    <a class="btn btn-primary" href="#reponse">Répondre</a>
+  </nav>
+
+  <main>
+    <section class="intro" aria-label="Bienvenue">
+      <p>Nous nous marions à Majorque, entourés de nos proches, et nous serions si heureux de vous compter parmi nous. Tout ce qu’il faut savoir pour préparer votre venue est réuni ici. Le site s’enrichira au fil des mois.</p>
+      <p class="sign">Marva &amp; Jules</p>
+    </section>
+
+    <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 16"><path d="M1 8.2C3.6 3 8.6 1 13.6 1.6c3.6.5 6.2 2.6 9.4 6.4-2.8 3.6-5.6 5.8-9.4 6.3C8.4 15 3.8 13 1 8.2z" fill="#EFC00A"/></svg></div>
+
+    <section class="block" id="programme">
+      <h2>Le programme</h2>
+      <p class="lead">Le déroulé se précise. Les horaires arriveront ici.</p>
+      <ol class="days">
+        <li class="day">
+          <div class="day-when"><span class="day-dow">Vendredi</span><span class="day-num"><span>24</span></span><span class="day-month">septembre</span></div>
+          <div>
+            <h3>Soirée de bienvenue <span class="tbc">à confirmer</span></h3>
+            <p>Un premier verre ensemble pour lancer le week-end. Lieu et horaire à venir.</p>
+          </div>
+        </li>
+        <li class="day day-main">
+          <div class="day-when"><span class="day-dow">Samedi</span><span class="day-num"><span>25</span></span><span class="day-month">septembre</span></div>
+          <div>
+            <h3>Le mariage</h3>
+            <p class="where">Finca Son Vila, Pollença</p>
+            <ol class="moments">
+              <li>Cérémonie</li>
+              <li>Cocktail</li>
+              <li>Dîner</li>
+              <li>Soirée dansante</li>
+            </ol>
+            <p class="fine">Déroulé et horaires <span class="tbc">à confirmer</span></p>
+          </div>
+        </li>
+        <li class="day">
+          <div class="day-when"><span class="day-dow">Dimanche</span><span class="day-num"><span>26</span></span><span class="day-month">septembre</span></div>
+          <div>
+            <h3>Brunch du lendemain <span class="tbc">à confirmer</span></h3>
+            <p>Pour se retrouver encore un peu avant les départs. Lieu et horaire à venir.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 16"><path d="M1 8.2C3.6 3 8.6 1 13.6 1.6c3.6.5 6.2 2.6 9.4 6.4-2.8 3.6-5.6 5.8-9.4 6.3C8.4 15 3.8 13 1 8.2z" fill="#EFC00A"/></svg></div>
+
+    <section class="block" id="lieu">
+      <h2>Le lieu</h2>
+      <p class="lead">Une finca majorquine tournée vers les montagnes.</p>
+      <div class="venue">
+        <h3>Finca Son Vila</h3>
+        <p>Dans la campagne du nord de l’île, entre Pollença et Sa Pobla. C’est ici que nous vous donnons rendez-vous le samedi 25 septembre.</p>
+        <address>Carretera Palma–Pollença, km 45<br>07460 Pollença, Majorque</address>
+        <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Finca+Son+Vila%2C+Pollen%C3%A7a" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+      </div>
+    </section>
+
+    <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 16"><path d="M1 8.2C3.6 3 8.6 1 13.6 1.6c3.6.5 6.2 2.6 9.4 6.4-2.8 3.6-5.6 5.8-9.4 6.3C8.4 15 3.8 13 1 8.2z" fill="#EFC00A"/></svg></div>
+
+    <section class="block" id="venir">
+      <h2>Venir à Majorque</h2>
+      <p class="lead">Un vol jusqu’à Palma, puis cap au nord.</p>
+      <figure class="map">
+        <svg viewBox="0 0 340 282" role="img" aria-labelledby="map-title">
+          <title id="map-title">Carte de Majorque. L’aéroport de Palma est au sud-ouest de l’île, la Finca Son Vila au nord, près de Pollença.</title>
+          <path class="isle" d="M18.9 155.0C20.1 150.9 27.0 146.0 31.0 142.0C34.9 138.0 42.8 129.9 47.1 126.2C51.5 122.5 57.0 118.7 61.9 115.7C66.8 112.7 77.2 107.8 82.1 104.5C87.0 101.1 93.0 95.7 97.0 91.9C100.9 88.0 106.5 80.8 110.4 77.1C114.4 73.5 120.9 68.8 125.2 65.9C129.6 63.1 136.3 59.2 141.4 56.8C146.5 54.4 155.8 51.4 161.6 49.1C167.4 46.8 176.7 42.7 183.1 40.3C189.6 38.0 201.3 34.4 207.4 32.3C213.4 30.1 220.1 26.9 226.2 25.2C232.4 23.6 249.3 19.7 251.3 20.3C253.2 20.9 243.2 27.6 240.2 29.4C237.3 31.3 233.4 32.3 230.3 33.7C227.2 35.0 219.8 37.0 218.2 39.3C216.5 41.5 217.2 47.8 218.7 49.8C220.2 51.7 224.9 54.0 228.9 53.3C232.9 52.6 245.7 43.2 247.2 44.5C248.8 45.8 242.6 59.7 240.2 62.4C237.9 65.1 232.3 61.7 230.3 63.8C228.2 65.9 224.9 73.5 225.7 77.1C226.4 80.7 231.6 86.3 235.7 89.4C239.7 92.5 249.9 98.1 254.5 99.2C259.1 100.3 263.6 100.2 268.8 97.5C274.0 94.8 285.5 80.2 291.4 79.9C297.3 79.6 306.7 91.6 311.1 95.4C315.4 99.1 322.4 102.0 322.7 106.6C322.9 111.1 316.2 122.3 313.0 128.0C309.7 133.7 303.4 141.6 299.5 147.2C295.5 152.9 288.8 161.9 284.7 168.3C280.6 174.7 272.6 186.7 270.1 192.8C267.7 199.0 268.9 207.2 267.2 212.1C265.4 217.0 261.3 223.7 257.5 227.9C253.6 232.1 246.5 236.8 239.7 241.9C232.9 247.0 215.5 263.6 208.7 264.3C201.9 265.1 195.2 251.8 191.2 247.2C187.3 242.6 183.8 233.7 180.4 231.4C177.1 229.1 173.0 231.0 167.0 230.7C160.9 230.4 143.0 232.4 137.4 229.3C131.7 226.2 128.0 215.2 126.6 208.6C125.1 202.0 128.4 187.8 127.1 182.3C125.8 176.8 121.0 172.6 117.2 169.3C113.3 166.1 104.0 159.7 99.7 159.2C95.3 158.6 90.3 163.2 86.2 165.5C82.0 167.7 73.0 171.1 70.0 175.3C67.1 179.5 67.8 195.1 65.2 195.6C62.5 196.1 54.7 181.7 51.2 178.8C47.6 175.9 43.1 176.1 39.9 174.6C36.7 173.1 30.8 168.8 28.3 168.3C25.8 167.8 23.4 173.0 22.1 171.1C20.8 169.2 17.6 159.0 18.9 155.0Z"/>
+          <path class="ridge" d="M53 137l6-8 6 8M73 119l7-9 6 9M93 104l7-9 6 9M116 90l7-9 6 9M138 77l6-8 6 8M160 66l6-8 6 8"/>
+          <text class="sea" transform="rotate(-31 78 80)" x="78" y="80" text-anchor="middle">Serra de Tramuntana</text>
+          <path class="way" d="M123.6 164.2C123.8 161.4 122.9 153.0 125.2 147.2C127.5 141.5 132.6 135.0 137.4 129.7C142.1 124.5 148.0 119.9 153.5 115.7C159.0 111.5 164.6 108.1 170.2 104.5C175.8 100.9 182.7 97.6 187.2 94.0C191.7 90.3 194.7 86.9 197.1 82.4C199.6 77.9 201.0 69.5 201.7 67.0"/>
+          <circle class="port" cx="123.6" cy="164.2" r="4.2"/>
+          <text x="133" y="178">Aéroport de Palma</text>
+          <path class="fruit" transform="translate(201.7 66) rotate(-28)" d="M-8.5 0C-6-4.6-1.6-5.6 2.2-5 5-4.5 6.8-2.8 9 0 6.8 2.8 5 4.5 2.2 5-1.6 5.6-6 4.6-8.5 0z"/>
+          <text class="here" x="214" y="71">Finca Son Vila</text>
+          <text x="214" y="84">Pollença</text>
+        </svg>
+        <figcaption>De l’aéroport à Pollença : environ 60 km, 45 à 50 minutes de route</figcaption>
+      </figure>
+      <dl class="rows">
+        <div class="row">
+          <dt>En avion</dt>
+          <dd>Tous les vols arrivent à l’aéroport de Palma de Majorque (PMI). Fin septembre reste une période demandée : mieux vaut réserver tôt.</dd>
+        </div>
+        <div class="row">
+          <dt>En voiture</dt>
+          <dd>La location est la solution la plus simple pour circuler dans le nord de l’île. Depuis l’aéroport, suivez la direction Inca, puis Pollença.</dd>
+        </div>
+        <div class="row">
+          <dt>En taxi</dt>
+          <dd>Taxi ou transfert privé depuis l’aéroport. En le réservant à l’avance, vous connaissez le prix avant de partir.</dd>
+        </div>
+        <div class="row">
+          <dt>En navette</dt>
+          <dd>Navettes vers la finca le jour du mariage <span class="tbc">à confirmer</span><br>Dites-nous dans votre réponse si cela vous intéresse.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 16"><path d="M1 8.2C3.6 3 8.6 1 13.6 1.6c3.6.5 6.2 2.6 9.4 6.4-2.8 3.6-5.6 5.8-9.4 6.3C8.4 15 3.8 13 1 8.2z" fill="#EFC00A"/></svg></div>
+
+    <section class="block" id="dormir">
+      <h2>Où dormir</h2>
+      <p class="lead">Quatre points de chute autour de la finca.</p>
+      <ul class="stays">
+        <li>
+          <div><h3>Pollença</h3><p>Le village, ses ruelles de pierre et sa grande place.</p></div>
+          <span class="mins">≈ 10 min</span>
+        </li>
+        <li>
+          <div><h3>Port de Pollença</h3><p>Le bord de mer et sa promenade sous les pins.</p></div>
+          <span class="mins">≈ 20 min</span>
+        </li>
+        <li>
+          <div><h3>Alcúdia</h3><p>Une vieille ville fortifiée et de longues plages.</p></div>
+          <span class="mins">≈ 20 min</span>
+        </li>
+        <li>
+          <div><h3>Cala Sant Vicenç</h3><p>De petites criques, au calme.</p></div>
+          <span class="mins">≈ 20 min</span>
+        </li>
+      </ul>
+      <p class="fine">Temps de route estimés jusqu’à la finca.</p>
+      <p class="fine">Nos adresses et les logements réservés pour les invités <span class="tbc">à confirmer</span></p>
+    </section>
+
+    <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 16"><path d="M1 8.2C3.6 3 8.6 1 13.6 1.6c3.6.5 6.2 2.6 9.4 6.4-2.8 3.6-5.6 5.8-9.4 6.3C8.4 15 3.8 13 1 8.2z" fill="#EFC00A"/></svg></div>
+
+    <section class="block" id="pratique">
+      <h2>Infos pratiques</h2>
+      <p class="lead">Les petites choses qui font un week-end serein.</p>
+      <div class="facts">
+        <div class="fact">
+          <h3>Tenue <span class="tbc">à confirmer</span></h3>
+          <p>Le code vestimentaire arrive bientôt.</p>
+        </div>
+        <div class="fact">
+          <h3>Météo</h3>
+          <p>Fin septembre, les journées restent douces, autour de 25 °C, et la mer est encore bonne. Les soirées se rafraîchissent : prévoyez une petite laine.</p>
+        </div>
+        <div class="fact">
+          <h3>Enfants <span class="tbc">à confirmer</span></h3>
+          <p>Nous vous dirons bientôt comment s’organise le week-end pour les plus jeunes.</p>
+        </div>
+        <div class="fact">
+          <h3>Cadeaux <span class="tbc">à confirmer</span></h3>
+          <p>Votre présence à Majorque est déjà un cadeau. Plus de détails à venir.</p>
+        </div>
+        <div class="fact">
+          <h3>Une question ? <span class="tbc">à confirmer</span></h3>
+          <p>Le contact pour toute question pratique sera indiqué ici.</p>
+        </div>
+      </div>
+      <div class="around">
+        <h3>Si vous prolongez le séjour</h3>
+        <ul>
+          <li>Pollença, sa Plaça Major et les 365 marches du Calvari.</li>
+          <li>Le cap de Formentor, tout au nord, et son phare.</li>
+          <li>Les criques de Cala Sant Vicenç.</li>
+          <li>Alcúdia, sa vieille ville et ses remparts.</li>
+          <li>La Serra de Tramuntana, inscrite au patrimoine mondial de l’UNESCO.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 16"><path d="M1 8.2C3.6 3 8.6 1 13.6 1.6c3.6.5 6.2 2.6 9.4 6.4-2.8 3.6-5.6 5.8-9.4 6.3C8.4 15 3.8 13 1 8.2z" fill="#EFC00A"/></svg></div>
+
+    <section class="block" id="reponse">
+      <h2>Votre réponse</h2>
+      <p class="lead">Dites-nous qui sera là, et ce qu’il faut prévoir à table.</p>
+      <p class="fine">Réponse souhaitée avant le <span class="tbc">date à confirmer</span></p>
+
+      <form id="rsvp-form" novalidate>
+        <fieldset class="group">
+          <legend>Qui répond ?</legend>
+          <p class="hint">Ajoutez chaque personne invitée avec vous, enfants compris : chacun a son repas.</p>
+          <div id="people"></div>
+          <button type="button" class="btn btn-dashed" id="add-person">Ajouter une personne</button>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>Vos coordonnées</legend>
+          <div class="grid2">
+            <div class="field">
+              <label for="rsvp-email">E-mail</label>
+              <input id="rsvp-email" name="email" type="email" inputmode="email" autocomplete="email" aria-describedby="rsvp-email-err">
+              <p class="error" id="rsvp-email-err" hidden></p>
+            </div>
+            <div class="field">
+              <label for="rsvp-phone">Téléphone</label>
+              <input id="rsvp-phone" name="tel" type="tel" autocomplete="tel">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="group" id="stay-group">
+          <legend>Votre séjour</legend>
+          <div class="field">
+            <span class="cap">Serez-vous aussi là pour</span>
+            <div class="checks">
+              <label class="check" for="rsvp-welcome"><input type="checkbox" id="rsvp-welcome"><span>La soirée de bienvenue, vendredi 24 <span class="tbc">à confirmer</span></span></label>
+              <label class="check" for="rsvp-brunch"><input type="checkbox" id="rsvp-brunch"><span>Le brunch, dimanche 26 <span class="tbc">à confirmer</span></span></label>
+            </div>
+          </div>
+          <div class="grid2">
+            <div class="field">
+              <label for="rsvp-arrive">Arrivée sur l’île</label>
+              <select id="rsvp-arrive">
+                <option value="">À préciser</option>
+                <option>Avant le jeudi 23</option>
+                <option>Jeudi 23</option>
+                <option>Vendredi 24</option>
+                <option>Samedi 25</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="rsvp-depart">Départ</label>
+              <select id="rsvp-depart">
+                <option value="">À préciser</option>
+                <option>Dimanche 26</option>
+                <option>Lundi 27</option>
+                <option>Mardi 28 ou après</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="rsvp-stay">Où logerez-vous ?</label>
+            <select id="rsvp-stay">
+              <option value="">Je ne sais pas encore</option>
+              <option>Pollença</option>
+              <option>Port de Pollença</option>
+              <option>Alcúdia ou Port d’Alcúdia</option>
+              <option>Cala Sant Vicenç</option>
+              <option>Ailleurs sur l’île</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="rsvp-transport">Pour rejoindre la finca le jour J</label>
+            <select id="rsvp-transport">
+              <option value="">Je ne sais pas encore</option>
+              <option>En voiture</option>
+              <option>Une navette m’intéresse</option>
+              <option>En taxi</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset class="group">
+          <legend>Un petit mot</legend>
+          <div class="field">
+            <label for="rsvp-song">La chanson qui vous fera danser</label>
+            <input id="rsvp-song" type="text" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="rsvp-message">Un message pour Marva &amp; Jules</label>
+            <textarea id="rsvp-message" rows="3"></textarea>
+          </div>
+        </fieldset>
+
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <button type="submit" class="btn btn-primary btn-block">Voir mon récapitulatif</button>
+        <p class="fine">Vos réponses restent sur votre appareil tant que vous ne les avez pas envoyées.</p>
+      </form>
+
+      <div class="recap" id="rsvp-recap" tabindex="-1" hidden>
+        <h3>Votre réponse est prête</h3>
+        <p>Elle n’est pas encore envoyée. Relisez-la, puis envoyez-la à Marva &amp; Jules.</p>
+        <p class="recap-text" id="recap-text"></p>
+        <div class="actions">
+          <a class="btn btn-primary btn-block" id="send-wa" href="https://wa.me/" target="_blank" rel="noopener">Envoyer par WhatsApp</a>
+          <button type="button" class="btn btn-ghost btn-block" id="copy">Copier ma réponse</button>
+          <button type="button" class="link-btn" id="edit">Modifier ma réponse</button>
+        </div>
+        <p class="fine" id="send-hint"></p>
+        <p class="status" id="copy-status" role="status"></p>
+        <textarea id="copy-fallback" rows="8" readonly hidden aria-label="Votre réponse, à copier"></textarea>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p class="foot-line">À très vite à Majorque</p>
+    <p class="foot-names">Marva <span class="amp">&amp;</span> Jules</p>
+    <p class="foot-date">25 · 09 · 2027</p>
+  </footer>
+</div>
+
+<template id="person-tpl">
+  <div class="person" data-person>
+    <div class="person-head">
+      <h3>Invité <span data-n></span></h3>
+      <button type="button" class="link-btn" data-remove>Retirer</button>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label>Prénom</label>
+        <input type="text" data-f="first" autocapitalize="words">
+        <p class="error" hidden></p>
+      </div>
+      <div class="field">
+        <label>Nom</label>
+        <input type="text" data-f="last" autocapitalize="words">
+        <p class="error" hidden></p>
+      </div>
+    </div>
+    <div class="seg seg-quiet" role="radiogroup" aria-label="Adulte ou enfant">
+      <input type="radio" data-r="kind" value="adulte"><label>Adulte</label>
+      <input type="radio" data-r="kind" value="enfant"><label>Enfant</label>
+    </div>
+    <div class="field" data-age hidden>
+      <label>Âge le jour du mariage</label>
+      <input type="number" data-f="age" inputmode="numeric" min="0" max="17">
+    </div>
+    <div class="field">
+      <span class="cap">Présence au mariage</span>
+      <div class="seg" role="radiogroup" aria-label="Présence au mariage">
+        <input type="radio" data-r="attending" value="oui"><label>Sera là</label>
+        <input type="radio" data-r="attending" value="non"><label>Ne pourra pas venir</label>
+      </div>
+      <p class="error" data-att-err hidden>Indiquez si cette personne sera là.</p>
+    </div>
+    <div class="meal" data-meal hidden>
+      <div class="field">
+        <label>Régime alimentaire</label>
+        <select data-f="diet">
+          <option value="">Aucun régime particulier</option>
+          <option>Végétarien</option>
+          <option>Végan</option>
+          <option>Pescétarien</option>
+          <option>Sans porc</option>
+          <option>Sans gluten</option>
+          <option>Sans lactose</option>
+          <option>Halal</option>
+          <option>Casher</option>
+          <option>Autre, précisé ci-dessous</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Allergies, intolérances, précisions</label>
+        <input type="text" data-f="allergies" placeholder="Fruits à coque, gluten, lactose…" autocomplete="off">
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ── Réglages ─────────────────────────────────────────────────────────── */
+  const SITE = {
+    whatsapp: '',  // numéro des mariés au format international, sans « + » ni espaces (ex. 33612345678)
+    guests: {}     // lien personnel → prénoms affichés, ex. 'chloe-et-jerome': ['Chloé', 'Jérôme']
+  };
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const glide = calm ? 'auto' : 'smooth';
+
+  /* ── Compte à rebours ─────────────────────────────────────────────────── */
+  (() => {
+    const el = $('#count'), now = new Date();
+    const days = Math.round((Date.UTC(2027, 8, 25) - Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())) / 864e5);
+    if (days < 0) return;
+    el.textContent = days > 1 ? 'Dans ' + days + ' jours' : days === 1 ? 'C’est demain' : 'C’est aujourd’hui';
+    el.hidden = false;
+  })();
+
+  /* ── Lien personnel : …#pour-camille-et-thomas ────────────────────────── */
+  const cap = w => w.charAt(0).toUpperCase() + w.slice(1);
+  function guestNames() {
+    const h = location.hash.slice(1).toLowerCase();
+    if (!/^pour-[a-z]+(-[a-z]+)*$/.test(h)) return [];
+    const code = h.slice(5);
+    if (Array.isArray(SITE.guests[code])) return SITE.guests[code].slice(0, 8);
+    return code.split('-et-').map(n => n.split('-').map(cap).join('-')).filter(Boolean).slice(0, 8);
+  }
+  function greet() {
+    const names = guestNames();
+    $('#for-names').textContent = names.length < 2 ? names.join('') : names.slice(0, -1).join(', ') + ' & ' + names[names.length - 1];
+    $('#for').hidden = !names.length;
+    return names;
+  }
+
+  /* ── Navigation ───────────────────────────────────────────────────────── */
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    const target = a && document.getElementById(a.getAttribute('href').slice(1));
+    if (!target) return;
+    e.preventDefault();   // on garde le lien personnel dans l'adresse
+    target.scrollIntoView({ behavior: glide, block: 'start' });
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  });
+  if ('IntersectionObserver' in window) {
+    const rail = $('.nav-links'), links = $$('a', rail);
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        links.forEach(a => {
+          const on = a.getAttribute('href') === '#' + en.target.id;
+          if (on) { a.setAttribute('aria-current', 'true'); rail.scrollTo({ left: a.offsetLeft - (rail.clientWidth - a.offsetWidth) / 2, behavior: glide }); }
+          else a.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-30% 0px -65% 0px' });
+    $$('main .block').forEach(s => spy.observe(s));
+  }
+
+  /* ── Réponse ──────────────────────────────────────────────────────────── */
+  const KEY = 'mj-reponse';
+  const FIELDS = ['email', 'phone', 'arrive', 'depart', 'stay', 'transport', 'song', 'message'];
+  const CHECKS = ['welcome', 'brunch'];
+  const MAX = 12;
+  const form = $('#rsvp-form'), host = $('#people'), tpl = $('#person-tpl'), recap = $('#rsvp-recap');
+  let seq = 0, view = 'form', timer = 0;
+  const person = (first = '') => ({ id: ++seq, first, last: '', kind: 'adulte', age: '', attending: '', diet: '', allergies: '' });
+  let state = { people: [person()], email: '', phone: '', welcome: false, brunch: false, arrive: '', depart: '', stay: '', transport: '', song: '', message: '' };
+
+  const str = v => (typeof v === 'string' ? v : '');
+  const clean = s => s.trim().replace(/\s+/g, ' ');
+  function adopt(s) {
+    seq = 0;
+    state = {
+      people: s.people.slice(0, MAX).map(p => ({
+        id: ++seq, first: str(p.first), last: str(p.last), kind: p.kind === 'enfant' ? 'enfant' : 'adulte', age: str(p.age),
+        attending: p.attending === 'oui' || p.attending === 'non' ? p.attending : '', diet: str(p.diet), allergies: str(p.allergies)
+      })),
+      email: str(s.email), phone: str(s.phone), welcome: !!s.welcome, brunch: !!s.brunch, arrive: str(s.arrive),
+      depart: str(s.depart), stay: str(s.stay), transport: str(s.transport), song: str(s.song), message: str(s.message)
+    };
+  }
+  const usable = s => s && Array.isArray(s.people) && s.people.length > 0;
+  function stored() { try { const s = JSON.parse(localStorage.getItem(KEY)); return usable(s) ? s : null; } catch (e) { return null; } }
+  function keep() { clearTimeout(timer); timer = setTimeout(() => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }, 300); }
+  function untouched() {
+    const p = state.people[0];
+    return state.people.length === 1 && !p.first && !p.last && !p.attending && FIELDS.every(f => !state[f]) && CHECKS.every(c => !state[c]);
+  }
+
+  function tune(card, p) {
+    $('[data-age]', card).hidden = p.kind !== 'enfant';
+    $('[data-meal]', card).hidden = p.attending !== 'oui';
+    $('#stay-group').hidden = state.people.every(x => x.attending === 'non');
+  }
+  function paintPeople() {
+    host.textContent = '';
+    state.people.forEach((p, i) => {
+      const card = tpl.content.firstElementChild.cloneNode(true);
+      card.dataset.id = p.id;
+      $('[data-n]', card).textContent = i + 1;
+      $('[data-remove]', card).hidden = state.people.length < 2;
+      $$('[data-f]', card).forEach(el => {
+        const box = el.closest('.field'), err = $('.error', box);
+        el.id = 'p' + p.id + '-' + el.dataset.f;
+        el.value = p[el.dataset.f];
+        if (el.tagName === 'SELECT' && el.selectedIndex < 0) { el.selectedIndex = 0; p[el.dataset.f] = el.value; }
+        $('label', box).htmlFor = el.id;
+        if (err) { err.id = el.id + '-err'; el.setAttribute('aria-describedby', err.id); }
+      });
+      $$('[data-r]', card).forEach(el => {
+        el.name = 'p' + p.id + '-' + el.dataset.r;
+        el.id = el.name + '-' + el.value;
+        el.checked = p[el.dataset.r] === el.value;
+        el.nextElementSibling.htmlFor = el.id;
+      });
+      if (i === 0) { $('[data-f="first"]', card).autocomplete = 'given-name'; $('[data-f="last"]', card).autocomplete = 'family-name'; }
+      host.appendChild(card);
+      tune(card, p);
+    });
+    $('#add-person').hidden = state.people.length >= MAX;
+  }
+  function paintRest() {
+    FIELDS.forEach(f => {
+      const el = $('#rsvp-' + f);
+      el.value = state[f];
+      if (el.tagName === 'SELECT' && el.selectedIndex < 0) { el.selectedIndex = 0; state[f] = el.value; }
+    });
+    CHECKS.forEach(c => { $('#rsvp-' + c).checked = state[c]; });
+  }
+
+  function flag(input, msg) {
+    const err = document.getElementById(input.id + '-err');
+    if (msg) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
+    if (err) { err.textContent = msg; err.hidden = !msg; }
+    return !msg;
+  }
+  function onPerson(e) {
+    const t = e.target, card = t.closest('[data-person]');
+    const p = card && state.people.find(x => x.id === Number(card.dataset.id));
+    if (!p) return;
+    if (t.dataset.f) { p[t.dataset.f] = t.value; if (t.hasAttribute('aria-invalid')) flag(t, ''); }
+    else if (t.dataset.r && t.checked) { p[t.dataset.r] = t.value; if (t.dataset.r === 'attending') $('[data-att-err]', card).hidden = true; }
+    tune(card, p);
+    $('#form-error').hidden = true;
+    keep();
+  }
+  host.addEventListener('input', onPerson);
+  host.addEventListener('change', onPerson);
+  host.addEventListener('click', e => {
+    const btn = e.target.closest('[data-remove]');
+    if (!btn) return;
+    const id = Number(btn.closest('[data-person]').dataset.id);
+    state.people = state.people.filter(p => p.id !== id);
+    paintPeople(); keep();
+    $('#add-person').focus();
+  });
+  $('#add-person').addEventListener('click', () => {
+    const p = person();
+    state.people.push(p);
+    paintPeople(); keep();
+    $('#p' + p.id + '-first').focus();
+  });
+  FIELDS.forEach(f => {
+    const el = $('#rsvp-' + f);
+    const take = () => { state[f] = el.value; if (el.hasAttribute('aria-invalid')) flag(el, ''); $('#form-error').hidden = true; keep(); };
+    el.addEventListener('input', take);
+    el.addEventListener('change', take);
+  });
+  CHECKS.forEach(c => { const el = $('#rsvp-' + c); el.addEventListener('change', () => { state[c] = el.checked; keep(); }); });
+
+  /* Renvoie le premier champ à corriger, ou null si tout est bon. */
+  function check() {
+    let bad = null;
+    state.people.forEach((p, i) => {
+      const card = $('[data-id="' + p.id + '"]', host);
+      const first = $('[data-f="first"]', card), last = $('[data-f="last"]', card);
+      if (!flag(first, clean(p.first) ? '' : 'Indiquez le prénom.')) bad = bad || first;
+      if (!flag(last, i > 0 || clean(p.last) ? '' : 'Indiquez le nom.')) bad = bad || last;
+      $('[data-att-err]', card).hidden = !!p.attending;
+      if (!p.attending) bad = bad || $('[data-r="attending"]', card);
+    });
+    const mail = $('#rsvp-email'), value = state.email.trim();
+    if (!flag(mail, !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Vérifiez l’adresse, par exemple prenom@exemple.fr.')) bad = bad || mail;
+    return bad;
+  }
+
+  /* Le texte que l'invité envoie aux mariés. */
+  function summary() {
+    const out = ['Réponse au mariage de Marva & Jules, le 25 septembre 2027', ''];
+    state.people.forEach(p => {
+      let who = clean(p.first + ' ' + p.last);
+      if (p.kind === 'enfant') who += p.age ? ' (enfant, ' + p.age + (Number(p.age) > 1 ? ' ans)' : ' an)') : ' (enfant)';
+      out.push('• ' + who + ' : ' + (p.attending === 'oui' ? 'sera là' : 'ne pourra pas venir'));
+      if (p.attending === 'oui') {
+        out.push('   Repas : ' + (p.diet ? p.diet.replace('Autre, précisé ci-dessous', 'autre régime').toLowerCase() : 'aucun régime particulier'));
+        out.push(clean(p.allergies) ? '   Allergies et précisions : ' + clean(p.allergies) : '   Allergies : aucune signalée');
+      }
+    });
+    const more = [];
+    const contact = [clean(state.email), clean(state.phone)].filter(Boolean).join(' · ');
+    if (contact) more.push('Contact : ' + contact);
+    if (state.people.some(p => p.attending === 'oui')) {
+      const also = [state.welcome && 'la soirée de bienvenue (vendredi 24)', state.brunch && 'le brunch (dimanche 26)'].filter(Boolean);
+      if (also.length) more.push('Aussi là pour : ' + also.join(' et '));
+      const dates = [state.arrive && 'Arrivée : ' + state.arrive.toLowerCase(), state.depart && 'Départ : ' + state.depart.toLowerCase()].filter(Boolean);
+      if (dates.length) more.push(dates.join(' · '));
+      if (state.stay) more.push('Logement : ' + state.stay);
+      if (state.transport) more.push('Jour J : ' + state.transport.toLowerCase());
+    }
+    if (clean(state.song)) more.push('Chanson : ' + clean(state.song));
+    if (state.message.trim()) more.push('Message : ' + state.message.trim());
+    return (more.length ? out.concat('', more) : out).join('\n');
+  }
+
+  function show(next, quiet) {
+    view = next;
+    form.hidden = next !== 'form';
+    recap.hidden = next !== 'recap';
+    if (next === 'recap') {
+      const text = summary();
+      $('#recap-text').textContent = text;
+      $('#send-wa').href = 'https://wa.me/' + SITE.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(text);
+      $('#send-hint').textContent = SITE.whatsapp
+        ? 'WhatsApp s’ouvre avec votre réponse, déjà adressée aux mariés. Il ne reste qu’à appuyer sur Envoyer.'
+        : 'WhatsApp s’ouvre avec votre réponse. Choisissez Marva ou Jules comme destinataire, puis envoyez.';
+      $('#copy-status').textContent = '';
+      $('#copy-fallback').hidden = true;
+    }
+    if (quiet) return;
+    $('#reponse').scrollIntoView({ behavior: glide, block: 'start' });
+    if (next === 'recap') recap.focus({ preventScroll: true });
+  }
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const bad = check(), box = $('#form-error');
+    box.hidden = !bad;
+    if (!bad) return show('recap');
+    box.textContent = 'Il manque une information. Complétez les champs signalés, puis recommencez.';
+    bad.focus({ preventScroll: true });
+    bad.closest('.field, .person').scrollIntoView({ behavior: glide, block: 'center' });
+  });
+  $('#edit').addEventListener('click', () => show('form'));
+  $('#copy').addEventListener('click', () => {
+    const text = $('#recap-text').textContent, status = $('#copy-status');
+    const byHand = () => {
+      const area = $('#copy-fallback');
+      area.hidden = false; area.value = text; area.focus(); area.select();
+      status.textContent = 'La copie automatique est bloquée ici. Le texte est sélectionné ci-dessous : copiez-le, puis collez-le dans un message à Marva & Jules.';
+    };
+    try {
+      navigator.clipboard.writeText(text).then(() => { status.textContent = 'Réponse copiée. Collez-la dans un message à Marva & Jules.'; }, byHand);
+    } catch (err) { byHand(); }
+  });
+
+  /* ── Démarrage (et reprise après une mise à jour du site) ─────────────── */
+  function start(data) {
+    const names = greet();
+    const saved = data && usable(data.state) ? data.state : stored();
+    if (saved) adopt(saved);
+    if (names.length && untouched()) { seq = 0; state.people = names.map(n => person(n)); }
+    paintRest(); paintPeople();
+    if (data && data.view === 'recap' && !check()) show('recap', true);
+  }
+  window.addEventListener('hashchange', () => {
+    const names = greet();
+    if (names.length && untouched()) { seq = 0; state.people = names.map(n => person(n)); paintPeople(); }
+  });
+  const hot = window.claude && window.claude.hot;
+  if (hot && hot.snapshot) hot.snapshot(() => ({ state, view }));
+  if (hot && hot.ready) hot.ready(start); else start((hot && hot.data) || {});
+})();
+</script>
+</body>
+</html>
