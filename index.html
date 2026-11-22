@@ -114,22 +114,21 @@ h3{font:400 1.2rem/1.25 var(--display);color:var(--ink);text-wrap:balance}
 .intro .sign{font:italic 400 1.15rem/1 var(--display);color:var(--olive);margin-top:1rem}
 
 /* Programme */
-.days{margin-top:1.75rem;display:grid;gap:1.25rem}
-/* Un bloc par jour, empilés : la date en titre, le contenu dessous */
-.day{display:block;padding:1.35rem 1.25rem 1.5rem;border:1px solid var(--rule);border-radius:1.25rem;background:rgba(255,255,255,.35)}
-.day-main{background:rgba(239,192,10,.12);border-color:rgba(239,192,10,.55)}
-.day-when{display:flex;align-items:center;gap:.85rem;text-align:left;padding-bottom:1rem;margin-bottom:1rem;border-bottom:1px solid var(--rule)}
-.day-when .day-dow,.day-when .day-month,.day-when .day-num{margin:0}
-.day-dow{display:block;font:500 .6875rem/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--ochre);margin-bottom:.45rem}
-.day-num{display:grid;place-items:center;width:4rem;height:3.35rem;margin:0 auto;font:600 2.6rem/1 var(--script);color:var(--gold);font-variant-numeric:lining-nums}
-.day-main .day-num{background:var(--lemon);color:#2F3A1C;border-radius:58% 42% 55% 45% / 52% 60% 40% 48%;transform:rotate(-8deg)}
-.day-main .day-num span{display:block;transform:rotate(8deg)}
-.day-month{display:block;font:italic 500 1rem/1 var(--script);color:var(--leaf);margin-top:.4rem}
-.day p{margin-top:.35rem}
-.day .where{font:italic 500 1.15rem/1.2 var(--script);color:var(--leaf)}
-.moments{margin-top:.8rem;display:grid;gap:.35rem}
-.moments li{display:flex;align-items:baseline;gap:.65rem}
-.moments li::before{content:"";flex:none;width:.42rem;height:.42rem;border-radius:50%;background:var(--lemon);transform:translateY(-.12rem)}
+.days{margin-top:2.25rem}
+/* Façon faire-part : chaque jour centré, sans cadre, séparé par un petit citron */
+.day{text-align:center}
+.day + .day::before{content:"";display:block;width:1.35rem;height:.9rem;margin:2.6rem auto;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 16'%3E%3Cpath d='M1 8.2C3.6 3 8.6 1 13.6 1.6c3.6.5 6.2 2.6 9.4 6.4-2.8 3.6-5.6 5.8-9.4 6.3C8.4 15 3.8 13 1 8.2z' fill='%23EFC00A'/%3E%3C/svg%3E") center/contain no-repeat}
+.day-when{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;column-gap:.4em;margin-bottom:1rem}
+.day-dow{flex-basis:100%;font:500 .6875rem/1 var(--text);letter-spacing:.28em;text-transform:uppercase;color:var(--ochre);margin-bottom:.7rem}
+.day-num,.day-month{font:italic 500 2rem/1 var(--script);color:var(--gold);font-variant-numeric:lining-nums}
+.day-main .day-num,.day-main .day-month{font-size:2.6rem}
+.day h3{font-size:1.45rem;color:var(--olive)}
+.day p{margin:.45rem auto 0;max-width:42ch;color:var(--leaf)}
+.day .where{font:italic 500 1.2rem/1.3 var(--script)}
+.moments{margin-top:1.1rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem 0;font:italic 500 1.25rem/1.3 var(--script);color:var(--ink)}
+.moments li + li::before{content:"·";margin:0 .7em;color:var(--lemon);font-style:normal;font-weight:700}
+.day .fine{margin-top:1rem}
+@media (max-width:47.99rem){.moments{flex-direction:column;align-items:center}.moments li + li::before{content:none}}
 
 /* Lieu */
 .venue{margin-top:1.5rem;padding:1.4rem 1.25rem 1.5rem;border:1px solid var(--rule);border-radius:1.1rem;background:var(--card);display:grid;gap:.8rem;justify-items:start}
@@ -279,13 +278,13 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   .lead{font-size:1.55rem}
 
   /* Programme : trois jours côte à côte */
-  .days{gap:1.5rem;margin-top:0}
-  .day{display:grid;grid-template-columns:11rem minmax(0,1fr);column-gap:2.5rem;padding:2rem 2.5rem}
-  .day-when{flex-direction:column;align-items:flex-start;gap:.6rem;padding:0 2.5rem 0 0;margin:0;border-bottom:0;border-right:1px solid var(--rule)}
-  .moments{grid-template-columns:repeat(4,auto);justify-content:start;column-gap:2.25rem}
+  .days{margin-top:.5rem}
+  .day + .day::before{margin:3.25rem auto}
   .day-dow{font-size:.75rem}
-  .day-month{font-size:1.15rem}
-  .day h3{font-size:1.35rem}
+  .day-num,.day-month{font-size:2.4rem}
+  .day-main .day-num,.day-main .day-month{font-size:3.2rem}
+  .day h3{font-size:1.75rem}
+  .moments{font-size:1.45rem}
 
   /* Lieu : texte à gauche, bouton à droite */
   .venue{grid-template-columns:minmax(0,1fr) auto;column-gap:2.5rem;padding:2rem 2.25rem;margin-top:2rem}
