@@ -232,6 +232,30 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
 .foot-names{font:400 2.2rem/1 var(--display);color:var(--olive);margin-top:.5rem;letter-spacing:-.01em}
 .foot-date{font:500 .75rem/1 var(--text);letter-spacing:.22em;text-transform:uppercase;color:var(--ochre);margin-top:.9rem}
 
+/* ── Un seul axe centré pour tout le site, comme l'accueil ─────────────── */
+.block,.intro,.foot{text-align:center}
+.block-head{max-width:44rem;margin-inline:auto}
+.lead,.intro p,.fine{margin-inline:auto}
+.lead{max-width:32ch}
+.intro p{max-width:34ch}
+.venue{border:0;border-radius:0;background:none;padding:0;justify-items:center}
+.map{margin-inline:auto;max-width:30rem}
+.row{grid-template-columns:1fr;row-gap:.35rem;border:0;padding:1.1rem 0}
+.row:last-child{border:0}
+.row dd{max-width:38ch;margin-inline:auto}
+.stays li{grid-template-columns:1fr;justify-items:center;row-gap:.45rem;border:0;padding:1.1rem 0}
+.stays li:last-child{border:0}
+.facts{grid-template-columns:1fr}
+.fact{border:0;padding:1.1rem 0}
+.fact p{max-width:38ch;margin-inline:auto}
+.around{background:none;border-radius:0;padding:0;margin-top:2.25rem}
+.around ul{justify-items:center}
+.around li{display:block;max-width:34ch}
+.around li::before{content:none}
+#reponse > form,#reponse > .recap{max-width:40rem;margin-inline:auto;text-align:left}
+#reponse .recap{text-align:center}
+#reponse .recap-text{text-align:left}
+
 @media (max-width:21rem){
   :root{--gutter:1rem}
   .row{grid-template-columns:1fr;row-gap:.2rem}
@@ -241,7 +265,8 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   :root{--gutter:2.5rem}
   .sheet{max-width:46rem}
   .stays{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2.5rem}
-  .stays li:nth-last-child(-n+2){border-bottom:1px solid var(--rule)}
+  .rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2.5rem}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .around ul{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem}
 }
 
@@ -276,22 +301,18 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   .nav{padding-inline:var(--gutter) 1rem}
   .nav-links{gap:2.25rem;-webkit-mask-image:none;mask-image:none;padding-right:0}
 
-  /* Chaque section : le titre à gauche, le contenu sur la largeur à droite */
-  .block,.intro{display:grid;grid-template-columns:minmax(15rem,1fr) minmax(0,2.7fr);column-gap:clamp(3rem,6vw,8rem);align-items:start}
-  .block > *,.intro > *{grid-column:2}
-  .block > .block-head{grid-column:1;grid-row:1 / span 12;position:sticky;top:5.5rem}
-  .block-head .lead{max-width:22ch}
-  .intro{padding-top:4.5rem}
-  .intro p{font-size:clamp(1.45rem,1.7vw,1.85rem);max-width:58ch}
+  /* Toutes les sections suivent l'axe centré de l'accueil */
+  .block,.intro{max-width:84rem;margin-inline:auto}
+  .intro{padding-top:5rem}
+  .intro p{font-size:clamp(1.45rem,1.7vw,1.85rem);max-width:52ch}
   .intro .hello{font-size:clamp(2.2rem,3vw,3rem)}
-  .intro .sign{font-size:1.4rem}
-  .block{padding-top:4.5rem}
-  .rule{margin-top:4.5rem}
-  h2{font-size:2.6rem}
-  .lead{font-size:1.55rem}
+  .block{padding-top:5rem}
+  .rule{margin-top:5rem}
+  h2{font-size:clamp(2.6rem,3.2vw,3.4rem)}
+  .lead{font-size:1.6rem;max-width:40ch}
 
-  /* Programme : trois jours côte à côte */
-  .days{margin-top:.5rem}
+  /* Programme */
+  .days{margin-top:2.5rem}
   .day + .day::before{margin:3.25rem auto}
   .day-dow{font-size:.75rem}
   .day-num,.day-month{font-size:2.4rem}
@@ -300,28 +321,29 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   .moments{flex-direction:row;justify-content:center;gap:0;white-space:nowrap;font-size:min(1.4rem,1.45vw)}
   .moments li + li::before{content:"·";margin:0 .65em;color:var(--lemon);font-style:normal;font-weight:700}
 
-  /* Lieu : texte à gauche, bouton à droite */
-  .venue{grid-template-columns:minmax(0,1fr) auto;column-gap:2.5rem;padding:2rem 2.25rem;margin-top:2rem}
-  .venue > *{grid-column:1}
+  /* Lieu */
+  .venue{margin-top:2.25rem}
+  .venue h3{font-size:2rem}
   .venue p{max-width:52ch}
-  .venue .btn{grid-column:2;grid-row:1 / span 3;align-self:center}
 
-  /* Venir : carte et moyens de transport côte à côte */
-  /* Venir : titre, carte et moyens de transport sur trois colonnes */
-  #venir{grid-template-columns:minmax(15rem,1fr) minmax(0,1.35fr) minmax(0,1.35fr)}
-  #venir .map{grid-column:2;margin-top:0}
-  #venir .rows{grid-column:3;margin-top:0}
-  #venir .row{grid-template-columns:1fr;row-gap:.3rem}
+  /* Venir : la carte au centre, les quatre façons de venir en dessous, côte à côte */
+  .map{max-width:38rem}
+  .rows{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:3rem;margin-top:2.5rem}
+  .row dt{font-size:1.45rem}
 
-  .stays{column-gap:3.5rem;margin-top:0}
-  .facts{column-gap:2.5rem;margin-top:0}
-  .venue{margin-top:0}
-  .around{padding:1.75rem 2rem;margin-top:2.25rem}
-  .around ul{grid-template-columns:repeat(3,minmax(0,1fr))}
+  /* Dormir : les quatre villages côte à côte */
+  .stays{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:3rem;margin-top:2.5rem}
+  .stays h3{font-size:1.45rem}
 
-  /* Réponse : colonne centrée confortable pour remplir le formulaire */
-  #reponse > form,#reponse > .recap{max-width:48rem}
-  #reponse > .fine{margin-top:0}
+  /* Pratique */
+  .facts{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:3.5rem;margin-top:2.5rem}
+  .fact h3{font-size:1.45rem}
+  .around{margin-top:3.5rem}
+  .around ul{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem 3rem;max-width:64rem;margin-inline:auto}
+  .around li{flex:0 1 17rem}
+
+  /* Réponse : le formulaire dans une colonne centrée */
+  #reponse > form,#reponse > .recap{max-width:46rem}
 
   .foot{padding:4rem var(--gutter) 13rem}
   .branch-bottom{width:28rem}
