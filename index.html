@@ -113,10 +113,12 @@ h3{font:400 1.2rem/1.25 var(--display);color:var(--ink);text-wrap:balance}
 .intro .sign{font:italic 400 1.15rem/1 var(--display);color:var(--olive);margin-top:1rem}
 
 /* Programme */
-.days{margin-top:1.5rem}
-.day{display:grid;grid-template-columns:4.5rem minmax(0,1fr);column-gap:1rem;padding:1.3rem 0;border-top:1px solid var(--rule)}
-.day:last-child{border-bottom:1px solid var(--rule)}
-.day-when{text-align:center}
+.days{margin-top:1.75rem;display:grid;gap:1.25rem}
+/* Un bloc par jour, empilés : la date en titre, le contenu dessous */
+.day{display:block;padding:1.35rem 1.25rem 1.5rem;border:1px solid var(--rule);border-radius:1.25rem;background:rgba(255,255,255,.35)}
+.day-main{background:rgba(239,192,10,.12);border-color:rgba(239,192,10,.55)}
+.day-when{display:flex;align-items:center;gap:.85rem;text-align:left;padding-bottom:1rem;margin-bottom:1rem;border-bottom:1px solid var(--rule)}
+.day-when .day-dow,.day-when .day-month,.day-when .day-num{margin:0}
 .day-dow{display:block;font:500 .6875rem/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--ochre);margin-bottom:.45rem}
 .day-num{display:grid;place-items:center;width:4rem;height:3.35rem;margin:0 auto;font:600 2.6rem/1 var(--script);color:var(--gold);font-variant-numeric:lining-nums}
 .day-main .day-num{background:var(--lemon);color:#2F3A1C;border-radius:58% 42% 55% 45% / 52% 60% 40% 48%;transform:rotate(-8deg)}
@@ -224,7 +226,6 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
 @media (max-width:21rem){
   :root{--gutter:1rem}
   .row{grid-template-columns:1fr;row-gap:.2rem}
-  .day{grid-template-columns:3.75rem minmax(0,1fr)}
 }
 /* ── Tablette ────────────────────────────────────────────── */
 @media (min-width:48rem){
@@ -264,11 +265,11 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   .lead{font-size:1.55rem;max-width:40ch}
 
   /* Programme : trois jours côte à côte */
-  .days{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:2.5rem;margin-top:2rem}
-  .day{grid-template-columns:1fr;row-gap:1rem;align-content:start;padding:1.5rem 0;border-bottom:1px solid var(--rule)}
-  .day-when{display:flex;align-items:center;gap:.85rem;text-align:left}
-  .day-dow,.day-month{margin:0}
-  .day-num{margin:0}
+  .days{gap:1.5rem;margin-top:2rem}
+  .day{padding:1.75rem 2.25rem 2rem}
+  .day-dow{font-size:.75rem}
+  .day-month{font-size:1.15rem}
+  .day h3{font-size:1.35rem}
 
   /* Lieu : texte à gauche, bouton à droite */
   .venue{grid-template-columns:minmax(0,1fr) auto;column-gap:2.5rem;padding:2rem 2.25rem;margin-top:2rem}
