@@ -60,8 +60,12 @@ fieldset{border:0;min-width:0}
 .date{font:600 clamp(1.75rem,7.6vw,2.5rem)/1.1 var(--script);color:var(--gold);font-variant-numeric:lining-nums}
 .dow{display:block;font:500 .75rem/1 var(--text);letter-spacing:.22em;text-transform:uppercase;color:var(--ochre);margin-bottom:.55rem}
 .place{font:italic 500 clamp(1.3rem,5.4vw,1.6rem)/1.3 var(--script);color:var(--leaf);margin-top:.3rem}
-.count{font:500 .75rem/1 var(--text);letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);margin-top:min(1.4rem,2.2svh)}
-.hero .btn{margin-top:min(1.1rem,2svh)}
+.count{font:500 .75rem/1 var(--text);letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);margin-top:min(2rem,3.2svh)}
+.count:not([hidden]){display:flex;flex-direction:column;align-items:center;gap:.55rem}
+.count-num{font:400 clamp(2.6rem,6.5svh,3.4rem)/.9 var(--display);color:var(--olive);letter-spacing:.01em;font-variant-numeric:lining-nums}
+.count-unit{display:flex;align-items:center;gap:.75rem;font:500 .6875rem/1 var(--text);letter-spacing:.32em;text-transform:uppercase;color:var(--ochre);padding-left:.32em}
+.count-unit::before,.count-unit::after{content:"";width:1.6rem;height:1px;background:currentColor;opacity:.5}
+.hero .btn{margin-top:min(1.6rem,3svh)}
 .hero-meta{display:flex;flex-direction:column;align-items:center}
 
 /* ── Boutons ─────────────────────────────────────────────── */
@@ -111,7 +115,10 @@ h3{font:400 1.2rem/1.25 var(--display);color:var(--ink);text-wrap:balance}
 
 .intro{padding:2.5rem var(--gutter) 0}
 .intro p{font:500 1.35rem/1.42 var(--script);color:var(--ink);max-width:30ch}
-.intro .sign{font:italic 400 1.15rem/1 var(--display);color:var(--olive);margin-top:1rem}
+.intro p + p{margin-top:.85em}
+.intro .hello{font:400 1.75rem/1.2 var(--display);color:var(--olive)}
+.intro .love{font-style:italic;margin-top:1.4em}
+.intro .sign{font:italic 400 1.15rem/1 var(--display);color:var(--olive);margin-top:.5rem}
 
 /* Programme */
 .days{margin-top:2.25rem}
@@ -260,7 +267,9 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   .dow{font-size:clamp(.75rem,1.4svh,1rem)}
   .place{font-size:clamp(1.4rem,min(1.8vw,3svh),2.2rem)}
   .count{font-size:clamp(.75rem,1.4svh,1rem);margin-top:5svh}
-  .hero .btn{margin-top:2svh;font-size:clamp(1rem,1.9svh,1.35rem);padding-inline:2.2em;min-height:max(3rem,6svh)}
+  .count-num{font-size:clamp(3rem,8svh,5.5rem)}
+  .count-unit{font-size:clamp(.7rem,1.3svh,.9rem)}
+  .hero .btn{margin-top:4svh;font-size:clamp(1rem,1.9svh,1.35rem);padding-inline:2.2em;min-height:max(3rem,6svh)}
 
   .nav{padding-inline:var(--gutter) 1rem}
   .nav-links{gap:2.25rem;-webkit-mask-image:none;mask-image:none;padding-right:0}
@@ -271,7 +280,9 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   .block > .block-head{grid-column:1;grid-row:1 / span 12;position:sticky;top:5.5rem}
   .block-head .lead{max-width:22ch}
   .intro{padding-top:4.5rem}
-  .intro p{font-size:clamp(1.65rem,2vw,2.1rem);max-width:44ch}
+  .intro p{font-size:clamp(1.45rem,1.7vw,1.85rem);max-width:58ch}
+  .intro .hello{font-size:clamp(2.2rem,3vw,3rem)}
+  .intro .sign{font-size:1.4rem}
   .block{padding-top:4.5rem}
   .rule{margin-top:4.5rem}
   h2{font-size:2.6rem}
@@ -354,7 +365,11 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
 
   <main>
     <section class="intro" aria-label="Bienvenue">
-      <p>Nous nous marions à Majorque, entourés de nos proches, et nous serions si heureux de vous compter parmi nous. Tout ce qu’il faut savoir pour préparer votre venue est réuni ici. Le site s’enrichira au fil des mois.</p>
+      <p class="hello">Bienvenue sur notre site de mariage !</p>
+      <p>Nous avons choisi Majorque pour célébrer cette belle étape de notre vie, et on est tellement heureux de pouvoir partager ces moments avec vous.</p>
+      <p>On a créé ce site pour partager avec vous toutes les informations pratiques autour du mariage et vous aider à préparer votre venue à Majorque.</p>
+      <p>On a hâte de vous retrouver, de profiter du soleil, de faire la fête et surtout de créer de merveilleux souvenirs tous ensemble.</p>
+      <p class="love">Avec tout notre amour,</p>
       <p class="sign">Marva &amp; Jules</p>
     </section>
 
@@ -363,7 +378,6 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
     <section class="block" id="programme">
       <div class="block-head">
         <h2>Le programme</h2>
-        <p class="lead">Le déroulé se précise. Les horaires arriveront ici.</p>
       </div>
       <ol class="days">
         <li class="day">
@@ -720,9 +734,12 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
     "Dormir": "Stay",
     "Pratique": "Info",
     "Répondre": "RSVP",
-    "Nous nous marions à Majorque, entourés de nos proches, et nous serions si heureux de vous compter parmi nous. Tout ce qu’il faut savoir pour préparer votre venue est réuni ici. Le site s’enrichira au fil des mois.": "We are getting married in Mallorca, surrounded by the people we love, and we would be so happy to have you with us. Everything you need to plan your trip is here, and we will keep adding to it over the coming months.",
+    "Bienvenue sur notre site de mariage !": "Welcome to our wedding website!",
+    "Nous avons choisi Majorque pour célébrer cette belle étape de notre vie, et on est tellement heureux de pouvoir partager ces moments avec vous.": "We chose Mallorca to celebrate this beautiful step in our lives, and we are so happy to be able to share these moments with you.",
+    "On a créé ce site pour partager avec vous toutes les informations pratiques autour du mariage et vous aider à préparer votre venue à Majorque.": "We made this site to share all the practical information about the wedding and to help you plan your trip to Mallorca.",
+    "On a hâte de vous retrouver, de profiter du soleil, de faire la fête et surtout de créer de merveilleux souvenirs tous ensemble.": "We can’t wait to see you, to enjoy the sunshine, to party and, above all, to make wonderful memories together.",
+    "Avec tout notre amour,": "With all our love,",
     "Le programme": "The schedule",
-    "Le déroulé se précise. Les horaires arriveront ici.": "The plans are taking shape. Times will be posted here.",
     "Vendredi": "Friday",
     "septembre": "September",
     "Soirée de bienvenue": "Welcome evening",
@@ -846,7 +863,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   const T = {
     fr: {
       title: 'Mariage Marva & Jules',
-      days: d => 'Dans ' + d + ' jours', tomorrow: 'C’est demain', today: 'C’est aujourd’hui',
+      unit: 'jours', unit1: 'jour', today: 'C’est aujourd’hui',
       needFirst: 'Indiquez le prénom.', needLast: 'Indiquez le nom.',
       badMail: 'Vérifiez l’adresse, par exemple prenom@exemple.fr.',
       formError: 'Il manque une information. Complétez les champs signalés, puis recommencez.',
@@ -862,7 +879,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
     },
     en: {
       title: 'Marva & Jules’s wedding',
-      days: d => 'In ' + d + ' days', tomorrow: 'It’s tomorrow', today: 'It’s today',
+      unit: 'days', unit1: 'day', today: 'It’s today',
       needFirst: 'Please enter the first name.', needLast: 'Please enter the last name.',
       badMail: 'Please check the address, for example name@example.com.',
       formError: 'Something is missing. Fill in the highlighted fields, then try again.',
@@ -926,7 +943,13 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
     const el = $('#count'), now = new Date();
     const days = Math.round((Date.UTC(2027, 8, 25) - Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())) / 864e5);
     if (days < 0) return;
-    el.textContent = days > 1 ? T[L].days(days) : days === 1 ? t('tomorrow') : t('today');
+    el.textContent = '';
+    if (days > 0) {
+      const num = document.createElement('span'), unit = document.createElement('span');
+      num.className = 'count-num'; num.textContent = days;
+      unit.className = 'count-unit'; unit.textContent = days > 1 ? t('unit') : t('unit1');
+      el.append(num, unit);
+    } else el.textContent = t('today');
     el.hidden = false;
   }
 
