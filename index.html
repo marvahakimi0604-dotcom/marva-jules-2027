@@ -130,6 +130,8 @@ h3{font:400 1.2rem/1.25 var(--display);color:var(--ink);text-wrap:balance}
 .day-num,.day-month{font:italic 500 2rem/1 var(--script);color:var(--gold);font-variant-numeric:lining-nums}
 .day-main .day-num,.day-main .day-month{font-size:2.6rem}
 .day h3{font-size:1.45rem;color:var(--olive)}
+.day-title{display:flex;align-items:center;justify-content:center;gap:.9rem}
+.day-title::before,.day-title::after{content:"";width:2.2rem;height:1px;background:var(--olive);opacity:.45}
 .day p{margin:.45rem auto 0;max-width:42ch;color:var(--leaf)}
 .day .where{font:italic 500 1.2rem/1.3 var(--script)}
 .moments{margin-top:1.1rem;display:flex;flex-direction:column;align-items:center;gap:.3rem;font:italic 500 1.25rem/1.3 var(--script);color:var(--ink)}
@@ -295,7 +297,8 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   .day-num,.day-month{font-size:2.4rem}
   .day-main .day-num,.day-main .day-month{font-size:3.2rem}
   .day h3{font-size:1.75rem}
-  .moments{font-size:1.45rem}
+  .moments{flex-direction:row;justify-content:center;gap:0;white-space:nowrap;font-size:min(1.4rem,1.45vw)}
+  .moments li + li::before{content:"·";margin:0 .65em;color:var(--lemon);font-style:normal;font-weight:700}
 
   /* Lieu : texte à gauche, bouton à droite */
   .venue{grid-template-columns:minmax(0,1fr) auto;column-gap:2.5rem;padding:2rem 2.25rem;margin-top:2rem}
@@ -390,15 +393,15 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
         <li class="day day-main">
           <div class="day-when"><span class="day-dow">Samedi</span><span class="day-num"><span>25</span></span><span class="day-month">septembre</span></div>
           <div>
-            <h3>Le mariage</h3>
-            <p class="where">Finca Son Vila, Pollença</p>
+            <h3 class="day-title">Wedding Day</h3>
+            <p class="where"><a class="spot" href="https://www.google.com/maps/search/?api=1&amp;query=Finca+Son+Vila%2C+Pollen%C3%A7a" target="_blank" rel="noopener">Finca Son Vila</a>, Pollença</p>
             <ol class="moments">
-              <li>Réception d’accueil</li>
+              <li>Accueil des invités</li>
               <li>Cérémonie</li>
               <li>Cocktail</li>
               <li>Dîner</li>
               <li>Soirée dansante</li>
-              <li>After party</li>
+              <li>After-party</li>
             </ol>
           </div>
         </li>
@@ -751,7 +754,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
     "Un premier verre ensemble pour lancer le week-end. Lieu et horaire à venir.": "A first drink together to kick off the weekend. Place and time to come.",
     "Le mariage": "The wedding",
     "Cérémonie": "Ceremony",
-    "Réception d’accueil": "Welcome reception",
+    "Accueil des invités": "Guest arrival",
     "Cocktail": "Cocktail hour",
     "Dîner": "Dinner",
     "Soirée dansante": "Dancing",
