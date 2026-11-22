@@ -136,6 +136,7 @@ h3{font:400 1.2rem/1.25 var(--display);color:var(--ink);text-wrap:balance}
 .day .where{font:italic 500 1.2rem/1.3 var(--script)}
 .moments{margin-top:1.1rem;display:flex;flex-direction:column;align-items:center;gap:.3rem;font:italic 500 1.25rem/1.3 var(--script);color:var(--ink)}
 .day .fine{margin-top:1rem}
+.addr{margin-top:.8rem;font-style:normal;font-size:.875rem;letter-spacing:.02em;color:var(--leaf)}
 .spot{font-weight:600;color:var(--olive);text-decoration:underline;text-decoration-color:rgba(239,192,10,.9);text-decoration-thickness:2px;text-underline-offset:.2em}
 .spot:hover{color:var(--ink)}
 
@@ -379,7 +380,6 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   <nav class="nav" aria-label="Rubriques">
     <div class="nav-links">
       <a href="#programme">Programme</a>
-      <a href="#lieu">Lieu</a>
       <a href="#venir">Venir</a>
       <a href="#dormir">Dormir</a>
       <a href="#pratique">Pratique</a>
@@ -417,14 +417,8 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
           <div>
             <h3 class="day-title">Wedding Day</h3>
             <p class="where"><a class="spot" href="https://www.google.com/maps/search/?api=1&amp;query=Finca+Son+Vila%2C+Pollen%C3%A7a" target="_blank" rel="noopener">Finca Son Vila</a>, Pollença</p>
-            <ol class="moments">
-              <li>Accueil des invités</li>
-              <li>Cérémonie</li>
-              <li>Cocktail</li>
-              <li>Dîner</li>
-              <li>Soirée dansante</li>
-              <li>After-party</li>
-            </ol>
+            <p>Une finca majorquine tournée vers les montagnes, dans la campagne du nord de l’île, entre Pollença et Sa Pobla.</p>
+            <address class="addr">Carretera Palma–Pollença, km 45<br>07460 Pollença, Majorque</address>
           </div>
         </li>
         <li class="day">
@@ -435,21 +429,6 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
           </div>
         </li>
       </ol>
-    </section>
-
-    <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 16"><path d="M1 8.2C3.6 3 8.6 1 13.6 1.6c3.6.5 6.2 2.6 9.4 6.4-2.8 3.6-5.6 5.8-9.4 6.3C8.4 15 3.8 13 1 8.2z" fill="#EFC00A"/></svg></div>
-
-    <section class="block" id="lieu">
-      <div class="block-head">
-        <h2>Le lieu</h2>
-        <p class="lead">Une finca majorquine tournée vers les montagnes.</p>
-      </div>
-      <div class="venue">
-        <h3>Finca Son Vila</h3>
-        <p>Dans la campagne du nord de l’île, entre Pollença et Sa Pobla. C’est ici que nous vous donnons rendez-vous le samedi 25 septembre.</p>
-        <address>Carretera Palma–Pollença, km 45<br>07460 Pollença, Majorque</address>
-        <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Finca+Son+Vila%2C+Pollen%C3%A7a" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
-      </div>
     </section>
 
     <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 16"><path d="M1 8.2C3.6 3 8.6 1 13.6 1.6c3.6.5 6.2 2.6 9.4 6.4-2.8 3.6-5.6 5.8-9.4 6.3C8.4 15 3.8 13 1 8.2z" fill="#EFC00A"/></svg></div>
@@ -761,6 +740,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
     "Pratique": "Info",
     "Répondre": "RSVP",
     "Bienvenue sur notre site de mariage !": "Welcome to our wedding website!",
+    "Une finca majorquine tournée vers les montagnes, dans la campagne du nord de l’île, entre Pollença et Sa Pobla.": "A Mallorcan finca facing the mountains, in the countryside in the north of the island, between Pollença and Sa Pobla.",
     "Pour ceux qui seront déjà sur l’île, retrouvons-nous à la": "For those already on the island, let’s meet at",
     "pour lancer les festivités et profiter d’un premier moment tous ensemble.": "to kick off the celebrations and share a first moment together.",
     "L’horaire sera communiqué prochainement.": "The time will be announced soon.",
