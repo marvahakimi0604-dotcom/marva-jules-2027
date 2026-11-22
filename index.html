@@ -44,23 +44,24 @@ fieldset{border:0;min-width:0}
 .sheet{position:relative;max-width:38rem;margin:0 auto;overflow-x:clip}
 
 /* ── Accueil ─────────────────────────────────────────────── */
-.hero{position:relative;overflow:hidden;text-align:center;padding:26% var(--gutter) 2.25rem}
+.hero{position:relative;overflow:hidden;text-align:center;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:max(20vw,7svh) var(--gutter) max(1.75rem,5svh)}
 .branch{position:absolute;top:-8px;left:-8px;width:74%;max-width:none;pointer-events:none;user-select:none;
   transform-origin:0 0;animation:sway 8s ease-in-out infinite alternate}
 @keyframes sway{from{transform:rotate(-.7deg)}to{transform:rotate(.9deg)}}
 .for{position:relative;font:italic 500 1.2rem/1.2 var(--script);color:var(--ochre);margin-bottom:3%}
-.names{position:relative;font:400 min(17.4vw,6.6rem)/.8 var(--display);letter-spacing:-.012em;color:var(--olive);margin-top:8%}
+.names{position:relative;font:400 min(17.4vw,6.6rem,11svh)/.8 var(--display);letter-spacing:-.012em;color:var(--olive)}
 .for:not([hidden]) + .names{margin-top:0}
 .names > span{display:block}
 .amp{color:var(--lemon)}
 .tagline{position:relative;font:italic 500 clamp(1.3rem,5.6vw,1.75rem)/1.22 var(--script);color:var(--leaf);
-  max-width:30ch;margin:9% auto 0;text-wrap:balance}
-.peaks{display:block;width:44%;margin:7% auto 6%}
+  max-width:30ch;margin:min(9vw,3.6svh) auto 0;text-wrap:balance}
+.peaks{display:block;width:min(44vw,26svh);margin:min(7vw,3svh) auto min(6vw,2.6svh)}
 .date{font:600 clamp(1.75rem,7.6vw,2.5rem)/1.1 var(--script);color:var(--gold);font-variant-numeric:lining-nums}
 .dow{display:block;font:500 .75rem/1 var(--text);letter-spacing:.22em;text-transform:uppercase;color:var(--ochre);margin-bottom:.55rem}
 .place{font:italic 500 clamp(1.3rem,5.4vw,1.6rem)/1.3 var(--script);color:var(--leaf);margin-top:.3rem}
-.count{font:500 .75rem/1 var(--text);letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);margin-top:1.4rem}
-.hero .btn{margin-top:1.1rem}
+.count{font:500 .75rem/1 var(--text);letter-spacing:.18em;text-transform:uppercase;color:var(--ochre);margin-top:min(1.4rem,2.2svh)}
+.hero .btn{margin-top:min(1.1rem,2svh)}
 
 /* ── Boutons ─────────────────────────────────────────────── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3rem;padding:.6rem 1.5rem;
@@ -85,6 +86,13 @@ fieldset{border:0;min-width:0}
 .nav-links a{flex:none;padding:.95rem 0 .85rem;font:500 .75rem/1 var(--text);letter-spacing:.13em;text-transform:uppercase;
   color:var(--leaf);text-decoration:none;border-bottom:2px solid transparent}
 .nav-links a[aria-current="true"]{color:var(--ink);border-bottom-color:var(--lemon)}
+.lang{display:inline-flex;flex:none;gap:2px;padding:3px;border:1px solid var(--rule);border-radius:999px;background:var(--paper)}
+.lang button{min-width:2.4rem;min-height:2rem;padding:.35rem .55rem;border:0;border-radius:999px;background:transparent;color:var(--leaf);
+  font:600 .75rem/1 var(--text);letter-spacing:.1em;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--olive);color:var(--paper)}
+.lang-hero{position:absolute;top:max(1rem,env(safe-area-inset-top));right:var(--gutter);z-index:2}
+.nav .lang{margin-left:auto}
+@media (max-width:30rem){.nav .lang button{min-width:2rem;padding:.3rem .4rem;font-size:.6875rem}.nav .btn{padding-inline:.85rem}}
 .nav .btn{flex:none;min-height:2.5rem;padding:.4rem 1.05rem;font-size:.875rem}
 
 /* ── Sections ────────────────────────────────────────────── */
@@ -232,14 +240,18 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   :root{--gutter:4.5rem}
   .sheet{max-width:72rem}
 
-  .hero{padding:11rem var(--gutter) 4.5rem}
-  .branch{width:36rem}
-  .for{font-size:1.5rem;margin-bottom:1.5rem}
-  .names{font-size:8.5rem;margin-top:0}
-  .tagline{font-size:2rem;margin-top:2.75rem}
-  .peaks{width:16rem;margin:2.5rem auto 2rem}
-  .date{font-size:2.75rem}
-  .place{font-size:1.75rem}
+  /* L'accueil remplit l'écran et grandit avec lui (largeur et hauteur) */
+  .hero{padding:clamp(4rem,12svh,9rem) var(--gutter) clamp(2rem,6svh,4.5rem)}
+  .branch{width:min(40vw,62svh)}
+  .for{font-size:clamp(1.3rem,2.6svh,1.9rem);margin-bottom:2svh}
+  .names{font-size:min(9.5vw,15.5svh)}
+  .tagline{font-size:clamp(1.5rem,min(2.1vw,3.5svh),2.6rem);margin-top:4svh}
+  .peaks{width:min(17vw,26svh);margin:4svh auto 3svh}
+  .date{font-size:clamp(2rem,min(2.9vw,4.6svh),3.6rem)}
+  .dow{font-size:clamp(.75rem,1.4svh,1rem)}
+  .place{font-size:clamp(1.4rem,min(1.8vw,3svh),2.2rem)}
+  .count{font-size:clamp(.75rem,1.4svh,1rem);margin-top:2.5svh}
+  .hero .btn{margin-top:2svh;font-size:clamp(1rem,1.8svh,1.2rem);padding-inline:2em}
 
   .nav{padding-inline:var(--gutter) 1rem}
   .nav-links{gap:2.25rem;-webkit-mask-image:none;mask-image:none;padding-right:0}
@@ -296,6 +308,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
 <div class="sheet">
 
   <header class="hero" id="accueil">
+    <div class="lang lang-hero" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr" aria-pressed="true" lang="fr">FR</button><button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button></div>
     <p class="for" id="for" hidden>Pour <span id="for-names"></span></p>
     <h1 class="names"><span>Marva</span><span><span class="amp">&amp;</span>Jules</span></h1>
     <p class="tagline">L’amour nous rassemble, notre mariage nous réunit à Majorque.</p>
@@ -314,6 +327,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
       <a href="#dormir">Dormir</a>
       <a href="#pratique">Pratique</a>
     </div>
+    <div class="lang" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr" aria-pressed="true" lang="fr">FR</button><button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button></div>
     <a class="btn btn-primary" href="#reponse">Répondre</a>
   </nav>
 
@@ -447,16 +461,8 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
       <p class="lead">Les petites choses qui font un week-end serein.</p>
       <div class="facts">
         <div class="fact">
-          <h3>Tenue <span class="tbc">à confirmer</span></h3>
-          <p>Le code vestimentaire arrive bientôt.</p>
-        </div>
-        <div class="fact">
           <h3>Météo</h3>
           <p>Fin septembre, les journées restent douces, autour de 25 °C, et la mer est encore bonne. Les soirées se rafraîchissent : prévoyez une petite laine.</p>
-        </div>
-        <div class="fact">
-          <h3>Enfants <span class="tbc">à confirmer</span></h3>
-          <p>Nous vous dirons bientôt comment s’organise le week-end pour les plus jeunes.</p>
         </div>
         <div class="fact">
           <h3>Cadeaux <span class="tbc">à confirmer</span></h3>
@@ -489,7 +495,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
       <form id="rsvp-form" novalidate>
         <fieldset class="group">
           <legend>Qui répond ?</legend>
-          <p class="hint">Ajoutez chaque personne invitée avec vous, enfants compris : chacun a son repas.</p>
+          <p class="hint">Ajoutez chaque personne invitée avec vous : chacun a son repas.</p>
           <div id="people"></div>
           <button type="button" class="btn btn-dashed" id="add-person">Ajouter une personne</button>
         </fieldset>
@@ -523,19 +529,19 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
               <label for="rsvp-arrive">Arrivée sur l’île</label>
               <select id="rsvp-arrive">
                 <option value="">À préciser</option>
-                <option>Avant le jeudi 23</option>
-                <option>Jeudi 23</option>
-                <option>Vendredi 24</option>
-                <option>Samedi 25</option>
+                <option value="Avant le jeudi 23">Avant le jeudi 23</option>
+                <option value="Jeudi 23">Jeudi 23</option>
+                <option value="Vendredi 24">Vendredi 24</option>
+                <option value="Samedi 25">Samedi 25</option>
               </select>
             </div>
             <div class="field">
               <label for="rsvp-depart">Départ</label>
               <select id="rsvp-depart">
                 <option value="">À préciser</option>
-                <option>Dimanche 26</option>
-                <option>Lundi 27</option>
-                <option>Mardi 28 ou après</option>
+                <option value="Dimanche 26">Dimanche 26</option>
+                <option value="Lundi 27">Lundi 27</option>
+                <option value="Mardi 28 ou après">Mardi 28 ou après</option>
               </select>
             </div>
           </div>
@@ -543,20 +549,20 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
             <label for="rsvp-stay">Où logerez-vous ?</label>
             <select id="rsvp-stay">
               <option value="">Je ne sais pas encore</option>
-              <option>Pollença</option>
-              <option>Port de Pollença</option>
-              <option>Alcúdia ou Port d’Alcúdia</option>
-              <option>Cala Sant Vicenç</option>
-              <option>Ailleurs sur l’île</option>
+              <option value="Pollença">Pollença</option>
+              <option value="Port de Pollença">Port de Pollença</option>
+              <option value="Alcúdia ou Port d’Alcúdia">Alcúdia ou Port d’Alcúdia</option>
+              <option value="Cala Sant Vicenç">Cala Sant Vicenç</option>
+              <option value="Ailleurs sur l’île">Ailleurs sur l’île</option>
             </select>
           </div>
           <div class="field">
             <label for="rsvp-transport">Pour rejoindre la finca le jour J</label>
             <select id="rsvp-transport">
               <option value="">Je ne sais pas encore</option>
-              <option>En voiture</option>
-              <option>Une navette m’intéresse</option>
-              <option>En taxi</option>
+              <option value="En voiture">En voiture</option>
+              <option value="Une navette m’intéresse">Une navette m’intéresse</option>
+              <option value="En taxi">En taxi</option>
             </select>
           </div>
         </fieldset>
@@ -619,14 +625,6 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
         <p class="error" hidden></p>
       </div>
     </div>
-    <div class="seg seg-quiet" role="radiogroup" aria-label="Adulte ou enfant">
-      <input type="radio" data-r="kind" value="adulte"><label>Adulte</label>
-      <input type="radio" data-r="kind" value="enfant"><label>Enfant</label>
-    </div>
-    <div class="field" data-age hidden>
-      <label>Âge le jour du mariage</label>
-      <input type="number" data-f="age" inputmode="numeric" min="0" max="17">
-    </div>
     <div class="field">
       <span class="cap">Présence au mariage</span>
       <div class="seg" role="radiogroup" aria-label="Présence au mariage">
@@ -640,15 +638,15 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
         <label>Régime alimentaire</label>
         <select data-f="diet">
           <option value="">Aucun régime particulier</option>
-          <option>Végétarien</option>
-          <option>Végan</option>
-          <option>Pescétarien</option>
-          <option>Sans porc</option>
-          <option>Sans gluten</option>
-          <option>Sans lactose</option>
-          <option>Halal</option>
-          <option>Casher</option>
-          <option>Autre, précisé ci-dessous</option>
+          <option value="Végétarien">Végétarien</option>
+          <option value="Végan">Végan</option>
+          <option value="Pescétarien">Pescétarien</option>
+          <option value="Sans porc">Sans porc</option>
+          <option value="Sans gluten">Sans gluten</option>
+          <option value="Sans lactose">Sans lactose</option>
+          <option value="Halal">Halal</option>
+          <option value="Casher">Casher</option>
+          <option value="Autre, précisé ci-dessous">Autre, précisé ci-dessous</option>
         </select>
       </div>
       <div class="field">
@@ -674,23 +672,239 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const glide = calm ? 'auto' : 'smooth';
 
+  /* ── Langue : français / anglais ──────────────────────────────────────── */
+  /* Le français est écrit dans la page ; l'anglais remplace chaque texte par sa traduction. */
+  const EN = {
+    "Pour": "For",
+    "L’amour nous rassemble, notre mariage nous réunit à Majorque.": "Love brings us together, and our wedding brings us to Mallorca.",
+    "Samedi": "Saturday",
+    "25 septembre 2027": "25 September 2027",
+    "Pollença, Majorque": "Pollença, Mallorca",
+    "Répondre à l’invitation": "RSVP",
+    "Programme": "Schedule",
+    "Lieu": "Venue",
+    "Venir": "Travel",
+    "Dormir": "Stay",
+    "Pratique": "Info",
+    "Répondre": "RSVP",
+    "Nous nous marions à Majorque, entourés de nos proches, et nous serions si heureux de vous compter parmi nous. Tout ce qu’il faut savoir pour préparer votre venue est réuni ici. Le site s’enrichira au fil des mois.": "We are getting married in Mallorca, surrounded by the people we love, and we would be so happy to have you with us. Everything you need to plan your trip is here, and we will keep adding to it over the coming months.",
+    "Le programme": "The schedule",
+    "Le déroulé se précise. Les horaires arriveront ici.": "The plans are taking shape. Times will be posted here.",
+    "Vendredi": "Friday",
+    "septembre": "September",
+    "Soirée de bienvenue": "Welcome evening",
+    "à confirmer": "to be confirmed",
+    "Un premier verre ensemble pour lancer le week-end. Lieu et horaire à venir.": "A first drink together to kick off the weekend. Place and time to come.",
+    "Le mariage": "The wedding",
+    "Cérémonie": "Ceremony",
+    "Cocktail": "Drinks reception",
+    "Dîner": "Dinner",
+    "Soirée dansante": "Dancing",
+    "Déroulé et horaires": "Running order and times",
+    "Dimanche": "Sunday",
+    "Brunch du lendemain": "Day-after brunch",
+    "Pour se retrouver encore un peu avant les départs. Lieu et horaire à venir.": "One last get-together before everyone heads home. Place and time to come.",
+    "Le lieu": "The venue",
+    "Une finca majorquine tournée vers les montagnes.": "A Mallorcan finca facing the mountains.",
+    "Dans la campagne du nord de l’île, entre Pollença et Sa Pobla. C’est ici que nous vous donnons rendez-vous le samedi 25 septembre.": "In the countryside in the north of the island, between Pollença and Sa Pobla. This is where we will see you on Saturday 25 September.",
+    "07460 Pollença, Majorque": "07460 Pollença, Mallorca",
+    "Ouvrir dans Google Maps": "Open in Google Maps",
+    "Venir à Majorque": "Getting to Mallorca",
+    "Un vol jusqu’à Palma, puis cap au nord.": "A flight to Palma, then head north.",
+    "Carte de Majorque. L’aéroport de Palma est au sud-ouest de l’île, la Finca Son Vila au nord, près de Pollença.": "Map of Mallorca. Palma airport is in the south-west of the island, Finca Son Vila in the north, near Pollença.",
+    "Aéroport de Palma": "Palma airport",
+    "De l’aéroport à Pollença : environ 60 km, 45 à 50 minutes de route": "From the airport to Pollença: about 60 km, a 45 to 50 minute drive",
+    "En avion": "By plane",
+    "Tous les vols arrivent à l’aéroport de Palma de Majorque (PMI). Fin septembre reste une période demandée : mieux vaut réserver tôt.": "All flights land at Palma de Mallorca airport (PMI). Late September is still a busy time, so it is best to book early.",
+    "En voiture": "By car",
+    "La location est la solution la plus simple pour circuler dans le nord de l’île. Depuis l’aéroport, suivez la direction Inca, puis Pollença.": "Renting a car is the easiest way to get around the north of the island. From the airport, follow signs for Inca, then Pollença.",
+    "En taxi": "By taxi",
+    "Taxi ou transfert privé depuis l’aéroport. En le réservant à l’avance, vous connaissez le prix avant de partir.": "Taxi or private transfer from the airport. Book ahead and you will know the price before you set off.",
+    "En navette": "By shuttle",
+    "Navettes vers la finca le jour du mariage": "Shuttles to the finca on the wedding day",
+    "Dites-nous dans votre réponse si cela vous intéresse.": "Let us know in your RSVP if you are interested.",
+    "Où dormir": "Where to stay",
+    "Quatre points de chute autour de la finca.": "Four bases around the finca.",
+    "Le village, ses ruelles de pierre et sa grande place.": "The village, its stone lanes and its main square.",
+    "Le bord de mer et sa promenade sous les pins.": "The seafront and its promenade under the pines.",
+    "Une vieille ville fortifiée et de longues plages.": "A walled old town and long beaches.",
+    "De petites criques, au calme.": "Small, quiet coves.",
+    "Temps de route estimés jusqu’à la finca.": "Estimated driving times to the finca.",
+    "Nos adresses et les logements réservés pour les invités": "Our recommendations and rooms set aside for guests",
+    "Infos pratiques": "Good to know",
+    "Les petites choses qui font un week-end serein.": "The little things that make for a relaxed weekend.",
+    "Météo": "Weather",
+    "Fin septembre, les journées restent douces, autour de 25 °C, et la mer est encore bonne. Les soirées se rafraîchissent : prévoyez une petite laine.": "In late September the days are still mild, around 25 °C, and the sea is still warm. Evenings get cooler, so bring a light layer.",
+    "Cadeaux": "Gifts",
+    "Votre présence à Majorque est déjà un cadeau. Plus de détails à venir.": "Having you with us in Mallorca is already a gift. More details to come.",
+    "Une question ?": "Any questions?",
+    "Le contact pour toute question pratique sera indiqué ici.": "Who to contact with practical questions will be listed here.",
+    "Si vous prolongez le séjour": "If you stay a little longer",
+    "Pollença, sa Plaça Major et les 365 marches du Calvari.": "Pollença, its Plaça Major and the 365 steps of the Calvari.",
+    "Le cap de Formentor, tout au nord, et son phare.": "Cap de Formentor at the island’s northern tip, and its lighthouse.",
+    "Les criques de Cala Sant Vicenç.": "The coves of Cala Sant Vicenç.",
+    "Alcúdia, sa vieille ville et ses remparts.": "Alcúdia, its old town and its walls.",
+    "La Serra de Tramuntana, inscrite au patrimoine mondial de l’UNESCO.": "The Serra de Tramuntana, a UNESCO World Heritage Site.",
+    "Votre réponse": "Your RSVP",
+    "Dites-nous qui sera là, et ce qu’il faut prévoir à table.": "Tell us who is coming, and what we should plan for at dinner.",
+    "Réponse souhaitée avant le": "Please reply by",
+    "date à confirmer": "date to be confirmed",
+    "Qui répond ?": "Who is replying?",
+    "Ajoutez chaque personne invitée avec vous : chacun a son repas.": "Add each person invited with you: everyone gets their own meal.",
+    "Ajouter une personne": "Add a person",
+    "Vos coordonnées": "Your contact details",
+    "E-mail": "Email",
+    "Téléphone": "Phone",
+    "Votre séjour": "Your stay",
+    "Serez-vous aussi là pour": "Will you also join us for",
+    "La soirée de bienvenue, vendredi 24": "The welcome evening, Friday 24th",
+    "Le brunch, dimanche 26": "The brunch, Sunday 26th",
+    "Arrivée sur l’île": "Arriving on the island",
+    "À préciser": "Not sure yet",
+    "Avant le jeudi 23": "Before Thursday 23rd",
+    "Jeudi 23": "Thursday 23rd",
+    "Vendredi 24": "Friday 24th",
+    "Samedi 25": "Saturday 25th",
+    "Départ": "Leaving",
+    "Dimanche 26": "Sunday 26th",
+    "Lundi 27": "Monday 27th",
+    "Mardi 28 ou après": "Tuesday 28th or later",
+    "Où logerez-vous ?": "Where will you stay?",
+    "Je ne sais pas encore": "I don’t know yet",
+    "Alcúdia ou Port d’Alcúdia": "Alcúdia or Port d’Alcúdia",
+    "Ailleurs sur l’île": "Elsewhere on the island",
+    "Pour rejoindre la finca le jour J": "Getting to the finca on the day",
+    "Une navette m’intéresse": "I’d like a shuttle",
+    "Un petit mot": "A few words",
+    "La chanson qui vous fera danser": "The song that will get you dancing",
+    "Un message pour Marva & Jules": "A message for Marva & Jules",
+    "Voir mon récapitulatif": "Review my RSVP",
+    "Vos réponses restent sur votre appareil tant que vous ne les avez pas envoyées.": "Your answers stay on your device until you send them.",
+    "Votre réponse est prête": "Your RSVP is ready",
+    "Elle n’est pas encore envoyée. Relisez-la, puis envoyez-la à Marva & Jules.": "It has not been sent yet. Read it over, then send it to Marva & Jules.",
+    "Envoyer par WhatsApp": "Send via WhatsApp",
+    "Copier ma réponse": "Copy my RSVP",
+    "Modifier ma réponse": "Edit my RSVP",
+    "À très vite à Majorque": "See you soon in Mallorca",
+    "Invité": "Guest",
+    "Retirer": "Remove",
+    "Prénom": "First name",
+    "Nom": "Last name",
+    "Présence au mariage": "Attending the wedding",
+    "Sera là": "Will be there",
+    "Ne pourra pas venir": "Can’t make it",
+    "Indiquez si cette personne sera là.": "Let us know whether this person is coming.",
+    "Régime alimentaire": "Dietary requirements",
+    "Aucun régime particulier": "No special diet",
+    "Végétarien": "Vegetarian",
+    "Végan": "Vegan",
+    "Pescétarien": "Pescatarian",
+    "Sans porc": "No pork",
+    "Sans gluten": "Gluten-free",
+    "Sans lactose": "Lactose-free",
+    "Casher": "Kosher",
+    "Autre, précisé ci-dessous": "Other, see below",
+    "Allergies, intolérances, précisions": "Allergies, intolerances, other details",
+    "Rubriques": "Sections",
+    "Bienvenue": "Welcome",
+    "Votre réponse, à copier": "Your RSVP, to copy",
+    "Fruits à coque, gluten, lactose…": "Nuts, gluten, lactose…"
+    };
+  const T = {
+    fr: {
+      title: 'Mariage Marva & Jules',
+      days: d => 'Dans ' + d + ' jours', tomorrow: 'C’est demain', today: 'C’est aujourd’hui',
+      needFirst: 'Indiquez le prénom.', needLast: 'Indiquez le nom.',
+      badMail: 'Vérifiez l’adresse, par exemple prenom@exemple.fr.',
+      formError: 'Il manque une information. Complétez les champs signalés, puis recommencez.',
+      head: 'Réponse au mariage de Marva & Jules, le 25 septembre 2027',
+      yes: 'sera là', no: 'ne pourra pas venir', meal: 'Repas : ', noDiet: 'aucun régime particulier', otherDiet: 'autre régime',
+      allergies: 'Allergies et précisions : ', noAllergy: 'Allergies : aucune signalée', contact: 'Contact : ',
+      welcome: 'la soirée de bienvenue (vendredi 24)', brunch: 'le brunch (dimanche 26)', also: 'Aussi là pour : ', and: ' et ',
+      arrive: 'Arrivée : ', depart: 'Départ : ', stay: 'Logement : ', dayJ: 'Jour J : ', song: 'Chanson : ', message: 'Message : ',
+      hintTo: 'WhatsApp s’ouvre avec votre réponse, déjà adressée aux mariés. Il ne reste qu’à appuyer sur Envoyer.',
+      hintPick: 'WhatsApp s’ouvre avec votre réponse. Choisissez Marva ou Jules comme destinataire, puis envoyez.',
+      copyHand: 'La copie automatique est bloquée ici. Le texte est sélectionné ci-dessous : copiez-le, puis collez-le dans un message à Marva & Jules.',
+      copied: 'Réponse copiée. Collez-la dans un message à Marva & Jules.'
+    },
+    en: {
+      title: 'Marva & Jules’s wedding',
+      days: d => 'In ' + d + ' days', tomorrow: 'It’s tomorrow', today: 'It’s today',
+      needFirst: 'Please enter the first name.', needLast: 'Please enter the last name.',
+      badMail: 'Please check the address, for example name@example.com.',
+      formError: 'Something is missing. Fill in the highlighted fields, then try again.',
+      head: 'RSVP for Marva & Jules’s wedding, 25 September 2027',
+      yes: 'will be there', no: 'can’t make it', meal: 'Meal: ', noDiet: 'no special diet', otherDiet: 'other diet',
+      allergies: 'Allergies and details: ', noAllergy: 'Allergies: none', contact: 'Contact: ',
+      welcome: 'the welcome evening (Friday 24th)', brunch: 'the brunch (Sunday 26th)', also: 'Also joining: ', and: ' and ',
+      arrive: 'Arriving: ', depart: 'Leaving: ', stay: 'Staying in: ', dayJ: 'On the day: ', song: 'Song: ', message: 'Message: ',
+      hintTo: 'WhatsApp opens with your RSVP, already addressed to the couple. Just tap Send.',
+      hintPick: 'WhatsApp opens with your RSVP. Pick Marva or Jules as the recipient, then send.',
+      copyHand: 'Automatic copying is blocked here. The text is selected below: copy it, then paste it into a message to Marva & Jules.',
+      copied: 'RSVP copied. Paste it into a message to Marva & Jules.'
+    }
+  };
+  const LANG_KEY = 'mj-langue';
+  let L = 'fr';
+  const t = k => T[L][k];
+  /* Libellé d'un choix enregistré (les choix sont gardés en français). */
+  const lab = v => (L === 'en' && EN[v] != null ? EN[v] : v);
+  function firstLang() {
+    const q = new URLSearchParams(location.search).get('lang');
+    if (q === 'fr' || q === 'en') return q;
+    try { const s = localStorage.getItem(LANG_KEY); if (s === 'fr' || s === 'en') return s; } catch (e) {}
+    const prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'fr'];
+    for (const x of prefs) { const c = String(x).slice(0, 2).toLowerCase(); if (c === 'fr' || c === 'en') return c; }
+    return 'en';
+  }
+  const ORIG = new WeakMap();
+  const DYNAMIC = '#people, #recap-text, #count, #for-names, #form-error, .error, #send-hint, #copy-status, #copy-fallback, .lang';
+  function translate(root) {
+    const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+      const el = n.parentElement;
+      if (!el || el.closest('script, style') || (root === document.body && el.closest(DYNAMIC))) continue;
+      if (!ORIG.has(n)) ORIG.set(n, n.nodeValue);
+      const fr = ORIG.get(n), key = fr.trim();
+      n.nodeValue = L === 'en' && key && EN[key] != null ? fr.replace(key, EN[key]) : fr;
+    }
+    root.querySelectorAll('[aria-label], [placeholder]').forEach(el => {
+      if (el.closest('.lang')) return;
+      ['aria-label', 'placeholder'].forEach(a => {
+        if (!el.hasAttribute(a)) return;
+        el.frAttrs = el.frAttrs || {};
+        if (!(a in el.frAttrs)) el.frAttrs[a] = el.getAttribute(a);
+        const fr = el.frAttrs[a];
+        el.setAttribute(a, L === 'en' && EN[fr] != null ? EN[fr] : fr);
+      });
+    });
+  }
+  function applyLang(l) {
+    L = l;
+    document.documentElement.lang = l;
+    document.title = t('title');
+    translate(document.body);
+    translate($('#person-tpl').content);
+    $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === l)));
+  }
+
   /* ── Compte à rebours ─────────────────────────────────────────────────── */
-  (() => {
+  function countdown() {
     const el = $('#count'), now = new Date();
     const days = Math.round((Date.UTC(2027, 8, 25) - Date.UTC(now.getFullYear(), now.getMonth(), now.getDate())) / 864e5);
     if (days < 0) return;
-    el.textContent = days > 1 ? 'Dans ' + days + ' jours' : days === 1 ? 'C’est demain' : 'C’est aujourd’hui';
+    el.textContent = days > 1 ? T[L].days(days) : days === 1 ? t('tomorrow') : t('today');
     el.hidden = false;
-  })();
+  }
 
   /* ── Lien personnel : …#pour-camille-et-thomas ────────────────────────── */
   const cap = w => w.charAt(0).toUpperCase() + w.slice(1);
   function guestNames() {
     const h = location.hash.slice(1).toLowerCase();
-    if (!/^pour-[a-z]+(-[a-z]+)*$/.test(h)) return [];
-    const code = h.slice(5);
+    if (!/^(pour|for)-[a-z]+(-[a-z]+)*$/.test(h)) return [];
+    const code = h.slice(h.indexOf('-') + 1);
     if (Array.isArray(SITE.guests[code])) return SITE.guests[code].slice(0, 8);
-    return code.split('-et-').map(n => n.split('-').map(cap).join('-')).filter(Boolean).slice(0, 8);
+    return code.split(/-(?:et|and)-/).map(n => n.split('-').map(cap).join('-')).filter(Boolean).slice(0, 8);
   }
   function greet() {
     const names = guestNames();
@@ -731,7 +945,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   const MAX = 12;
   const form = $('#rsvp-form'), host = $('#people'), tpl = $('#person-tpl'), recap = $('#rsvp-recap');
   let seq = 0, view = 'form', timer = 0;
-  const person = (first = '') => ({ id: ++seq, first, last: '', kind: 'adulte', age: '', attending: '', diet: '', allergies: '' });
+  const person = (first = '') => ({ id: ++seq, first, last: '', attending: '', diet: '', allergies: '' });
   let state = { people: [person()], email: '', phone: '', welcome: false, brunch: false, arrive: '', depart: '', stay: '', transport: '', song: '', message: '' };
 
   const str = v => (typeof v === 'string' ? v : '');
@@ -740,7 +954,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
     seq = 0;
     state = {
       people: s.people.slice(0, MAX).map(p => ({
-        id: ++seq, first: str(p.first), last: str(p.last), kind: p.kind === 'enfant' ? 'enfant' : 'adulte', age: str(p.age),
+        id: ++seq, first: str(p.first), last: str(p.last),
         attending: p.attending === 'oui' || p.attending === 'non' ? p.attending : '', diet: str(p.diet), allergies: str(p.allergies)
       })),
       email: str(s.email), phone: str(s.phone), welcome: !!s.welcome, brunch: !!s.brunch, arrive: str(s.arrive),
@@ -756,7 +970,6 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
   }
 
   function tune(card, p) {
-    $('[data-age]', card).hidden = p.kind !== 'enfant';
     $('[data-meal]', card).hidden = p.attending !== 'oui';
     $('#stay-group').hidden = state.people.every(x => x.attending === 'non');
   }
@@ -842,41 +1055,42 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
     state.people.forEach((p, i) => {
       const card = $('[data-id="' + p.id + '"]', host);
       const first = $('[data-f="first"]', card), last = $('[data-f="last"]', card);
-      if (!flag(first, clean(p.first) ? '' : 'Indiquez le prénom.')) bad = bad || first;
-      if (!flag(last, i > 0 || clean(p.last) ? '' : 'Indiquez le nom.')) bad = bad || last;
+      if (!flag(first, clean(p.first) ? '' : t('needFirst'))) bad = bad || first;
+      if (!flag(last, i > 0 || clean(p.last) ? '' : t('needLast'))) bad = bad || last;
       $('[data-att-err]', card).hidden = !!p.attending;
       if (!p.attending) bad = bad || $('[data-r="attending"]', card);
     });
     const mail = $('#rsvp-email'), value = state.email.trim();
-    if (!flag(mail, !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : 'Vérifiez l’adresse, par exemple prenom@exemple.fr.')) bad = bad || mail;
+    if (!flag(mail, !value || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ? '' : t('badMail'))) bad = bad || mail;
     return bad;
   }
 
   /* Le texte que l'invité envoie aux mariés. */
   function summary() {
-    const out = ['Réponse au mariage de Marva & Jules, le 25 septembre 2027', ''];
+    const low = v => (L === 'fr' ? v.toLowerCase() : lab(v));
+    const out = [t('head'), ''];
     state.people.forEach(p => {
-      let who = clean(p.first + ' ' + p.last);
-      if (p.kind === 'enfant') who += p.age ? ' (enfant, ' + p.age + (Number(p.age) > 1 ? ' ans)' : ' an)') : ' (enfant)';
-      out.push('• ' + who + ' : ' + (p.attending === 'oui' ? 'sera là' : 'ne pourra pas venir'));
+      const who = clean(p.first + ' ' + p.last);
+      out.push('• ' + who + (L === 'fr' ? ' : ' : ': ') + (p.attending === 'oui' ? t('yes') : t('no')));
       if (p.attending === 'oui') {
-        out.push('   Repas : ' + (p.diet ? p.diet.replace('Autre, précisé ci-dessous', 'autre régime').toLowerCase() : 'aucun régime particulier'));
-        out.push(clean(p.allergies) ? '   Allergies et précisions : ' + clean(p.allergies) : '   Allergies : aucune signalée');
+        const diet = !p.diet ? t('noDiet') : p.diet === 'Autre, précisé ci-dessous' ? t('otherDiet') : low(p.diet);
+        out.push('   ' + t('meal') + diet);
+        out.push(clean(p.allergies) ? '   ' + t('allergies') + clean(p.allergies) : '   ' + t('noAllergy'));
       }
     });
     const more = [];
     const contact = [clean(state.email), clean(state.phone)].filter(Boolean).join(' · ');
-    if (contact) more.push('Contact : ' + contact);
+    if (contact) more.push(t('contact') + contact);
     if (state.people.some(p => p.attending === 'oui')) {
-      const also = [state.welcome && 'la soirée de bienvenue (vendredi 24)', state.brunch && 'le brunch (dimanche 26)'].filter(Boolean);
-      if (also.length) more.push('Aussi là pour : ' + also.join(' et '));
-      const dates = [state.arrive && 'Arrivée : ' + state.arrive.toLowerCase(), state.depart && 'Départ : ' + state.depart.toLowerCase()].filter(Boolean);
+      const also = [state.welcome && t('welcome'), state.brunch && t('brunch')].filter(Boolean);
+      if (also.length) more.push(t('also') + also.join(t('and')));
+      const dates = [state.arrive && t('arrive') + low(state.arrive), state.depart && t('depart') + low(state.depart)].filter(Boolean);
       if (dates.length) more.push(dates.join(' · '));
-      if (state.stay) more.push('Logement : ' + state.stay);
-      if (state.transport) more.push('Jour J : ' + state.transport.toLowerCase());
+      if (state.stay) more.push(t('stay') + lab(state.stay));
+      if (state.transport) more.push(t('dayJ') + low(state.transport));
     }
-    if (clean(state.song)) more.push('Chanson : ' + clean(state.song));
-    if (state.message.trim()) more.push('Message : ' + state.message.trim());
+    if (clean(state.song)) more.push(t('song') + clean(state.song));
+    if (state.message.trim()) more.push(t('message') + state.message.trim());
     return (more.length ? out.concat('', more) : out).join('\n');
   }
 
@@ -889,8 +1103,8 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
       $('#recap-text').textContent = text;
       $('#send-wa').href = 'https://wa.me/' + SITE.whatsapp.replace(/\D/g, '') + '?text=' + encodeURIComponent(text);
       $('#send-hint').textContent = SITE.whatsapp
-        ? 'WhatsApp s’ouvre avec votre réponse, déjà adressée aux mariés. Il ne reste qu’à appuyer sur Envoyer.'
-        : 'WhatsApp s’ouvre avec votre réponse. Choisissez Marva ou Jules comme destinataire, puis envoyez.';
+        ? t('hintTo')
+        : t('hintPick');
       $('#copy-status').textContent = '';
       $('#copy-fallback').hidden = true;
     }
@@ -903,7 +1117,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
     const bad = check(), box = $('#form-error');
     box.hidden = !bad;
     if (!bad) return show('recap');
-    box.textContent = 'Il manque une information. Complétez les champs signalés, puis recommencez.';
+    box.textContent = t('formError');
     bad.focus({ preventScroll: true });
     bad.closest('.field, .person').scrollIntoView({ behavior: glide, block: 'center' });
   });
@@ -913,15 +1127,32 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:var(--alert)
     const byHand = () => {
       const area = $('#copy-fallback');
       area.hidden = false; area.value = text; area.focus(); area.select();
-      status.textContent = 'La copie automatique est bloquée ici. Le texte est sélectionné ci-dessous : copiez-le, puis collez-le dans un message à Marva & Jules.';
+      status.textContent = t('copyHand');
     };
     try {
-      navigator.clipboard.writeText(text).then(() => { status.textContent = 'Réponse copiée. Collez-la dans un message à Marva & Jules.'; }, byHand);
+      navigator.clipboard.writeText(text).then(() => { status.textContent = t('copied'); }, byHand);
     } catch (err) { byHand(); }
   });
 
   /* ── Démarrage (et reprise après une mise à jour du site) ─────────────── */
+  function setLang(l) {
+    if (l !== 'fr' && l !== 'en') return;
+    try { localStorage.setItem(LANG_KEY, l); } catch (e) {}
+    applyLang(l);
+    countdown();
+    paintPeople(); paintRest();
+    if (view === 'recap') show('recap', true);
+    const box = $('#form-error');
+    if (!box.hidden) { check(); box.textContent = t('formError'); }
+  }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.lang button');
+    if (b) setLang(b.dataset.lang);
+  });
+
   function start(data) {
+    applyLang(firstLang());
+    countdown();
     const names = greet();
     const saved = data && usable(data.state) ? data.state : stored();
     if (saved) adopt(saved);
